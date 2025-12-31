@@ -3,12 +3,13 @@ import Layout from "../layouts/BlogPost.astro";
 import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
 
-const heroImg = "/images/pages/LF_Reti.png";
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Reti.png`;
 
 const partnerGroups = [
   {
     title: "Scuole",
-    image: "/images/pages/LF_Chi_Siamo.png",
+    image: `${base}images/pages/LF_Chi_Siamo.png`,
     accent: "#4C7BBF",
     items: [
       { name: "IC Don Milani", href: "#" },
@@ -19,7 +20,7 @@ const partnerGroups = [
   },
   {
     title: "Servizi e enti",
-    image: "/images/pages/LF_Home.png",
+    image: `${base}images/pages/LF_Home.png`,
     accent: "#7A8F5A",
     items: [
       { name: "ATS Metropolitana", href: "#" },
@@ -30,7 +31,7 @@ const partnerGroups = [
   },
   {
     title: "Cultura e territorio",
-    image: "/images/pages/LF_Home2.png",
+    image: `${base}images/pages/LF_Home2.png`,
     accent: "#C28A4B",
     items: [
       { name: "Biblioteca Civica", href: "#" },
@@ -41,7 +42,7 @@ const partnerGroups = [
   },
   {
     title: "Associazioni",
-    image: "/images/pages/LF_Prodotti.png",
+    image: `${base}images/pages/LF_Prodotti.png`,
     accent: "#8B6CBF",
     items: [
       { name: "Associazione Insieme", href: "#" },

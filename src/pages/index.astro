@@ -3,7 +3,8 @@ import BaseLayout from '../layouts/BlogPost.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
-const heroImg = "/images/pages/LF_Home.png";
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home.png`;
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -11,7 +12,7 @@ const heroImg = "/images/pages/LF_Home.png";
     <div class="flex flex-col gap-6">
       <div class="flex items-center gap-3">
         <img
-          src="/images/logo/LF_logo-completo.png"
+          src={`${base}images/logo/LF_logo-completo.png`}
           alt="Lessico Familiare"
           class="h-10 w-auto"
           loading="eager"
@@ -152,7 +153,7 @@ const heroImg = "/images/pages/LF_Home.png";
 		<a href="/servizi/famiglia" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
 		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
 			<img
-			src="/images/servizi/LF_Servizi_Famiglia.png"
+			src={`${base}images/servizi/LF_Servizi_Famiglia.png`}
 			alt="Famiglia"
 			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
 			loading="lazy"
@@ -170,7 +171,7 @@ const heroImg = "/images/pages/LF_Home.png";
 		<a href="/servizi/scuole" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
 		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
 			<img
-			src="/images/servizi/LF_Servizi_Scuola.png"
+			src={`${base}images/servizi/LF_Servizi_Scuola.png`}
 			alt="Scuole"
 			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
 			loading="lazy"
@@ -188,7 +189,7 @@ const heroImg = "/images/pages/LF_Home.png";
 		<a href="/servizi/territori" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
 		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
 			<img
-			src="/images/servizi/LF_Servizi_Territorio.png"
+			src={`${base}images/servizi/LF_Servizi_Territorio.png`}
 			alt="Territori e organizzazioni"
 			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
 			loading="lazy"
@@ -206,7 +207,7 @@ const heroImg = "/images/pages/LF_Home.png";
 		<a href="/servizi/consulenza" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
 		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
 			<img
-			src="/images/servizi/LF_Servizi_Persona2.png"
+			src={`${base}images/servizi/LF_Servizi_Persona2.png`}
 			alt="Consulenza alla persona"
 			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
 			loading="lazy"
