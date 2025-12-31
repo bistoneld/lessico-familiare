@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/BlogPost.astro";
+import BannerStrip from "../../components/BannerStrip.astro";
+import Hero from "../../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout
+  title="Territori e organizzazioni"
+  description="Interventi nei territori e con organizzazioni culturali e sociali."
+>
+  <Hero
+    eyebrow=" "
+    title="Territori e organizzazioni"
+    subtitle="Reti di prossimita tra cittadini e agenzie territoriali utili all'integrazione sociale."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Chiedi una consulenza", href: `${base}contatti` }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="TERRITORI E ORGANIZZAZIONI" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        I territori dove lavoriamo sono una risorsa indispensabile per gli
+        interventi di cui ci occupiamo. Pensare i clienti entro una rete di
+        rapporti significa pensarli entro un quartiere, dove gli abitanti
+        condividono modi di stare insieme e servizi che nascono in base alle
+        loro necessita.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Sviluppiamo dialoghi tra cittadini e servizi territoriali che desiderano
+        intervenire nella convivenza di quartiere. Pensiamo ad associazioni
+        culturali, a librerie, a quei luoghi dove la cultura possa avere una
+        funzione sociale di sviluppo orientata alla costruzione di rapporti
+        produttivi.
+      </p>
+      <p class="mt-4 text-slate-600">
+        In accordo con le agenzie territoriali progettiamo laboratori che hanno
+        l'obiettivo di intervenire sulle domande dei cittadini dei quartieri.
+        Nello specifico, lavorando su problemi legati all'apprendimento e la
+        socializzazione di singoli e gruppi di bambini e le loro famiglie, ma
+        anche su questioni legate alla neo genitorialita.
+      </p>
+
+      <section
+        class="mt-12 rounded-2xl p-8"
+        style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
+      >
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+              Chiedi una consulenza
+            </h3>
+            <p class="mt-2 text-sm" style="color: var(--muted);">
+              Se vuoi costruire un progetto nel tuo territorio o con la tua
+              organizzazione, scrivici.
+            </p>
+          </div>
+          <a
+            href={`${base}contatti`}
+            class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
+            style="background: var(--brand);"
+          >
+            Scrivici
+          </a>
+        </div>
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

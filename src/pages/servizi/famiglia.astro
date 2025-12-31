@@ -1,0 +1,141 @@
+---
+import Layout from "../../layouts/BlogPost.astro";
+import BannerStrip from "../../components/BannerStrip.astro";
+import Hero from "../../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home.png`;
+---
+
+<Layout
+  title="Famiglia"
+  description="Percorsi di sostegno per famiglie e sviluppo dei figli."
+>
+  <Hero
+    eyebrow=" "
+    title="Famiglia"
+    subtitle="Servizi per lo sviluppo delle competenze ad apprendere nelle relazioni di bambini e giovani."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Chiedi una consulenza", href: `${base}contatti` }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="FAMIGLIA" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Pensiamo a famiglie interessate a sostenere lo sviluppo dei figli a
+        partire da problemi che incontrano nella loro quotidianita. Intendiamo
+        le difficolta sempre come problemi di rapporto (familiare, amicale,
+        scolastico).
+      </p>
+
+      <h3 class="mt-8 text-xl font-semibold" style="color: var(--brand-dark);">
+        Consulenza all'apprendimento: studiamo insieme?
+      </h3>
+      <p class="mt-3 text-slate-600">
+        Ci rivolgiamo a quelle famiglie i cui figli vivono delle criticita nel
+        rapporto con la scuola. Difficolta che si incontrano nel processo di
+        apprendimento, oppure nella socializzazione con il gruppo classe e il
+        corpo docente. Difficolta espresse anche dentro diagnosi (bes; dsa;
+        disabilita).
+      </p>
+      <p class="mt-3 text-slate-600">
+        Pensiamo i compiti come uno strumento di lavoro. Attraverso la relazione
+        di studio e possibile elaborare le emozioni che sono in gioco in rapporto
+        al contesto scuola.
+      </p>
+      <p class="mt-3 text-slate-600">
+        Intendiamo costruire un progetto di sviluppo orientato al desiderio di
+        apprendere, per sostenere i giovani a trovare la propria motivazione ed
+        il proprio metodo verso la conoscenza e la scoperta dei propri interessi.
+      </p>
+      <p class="mt-3 text-sm text-slate-500">Setting: individuali, di gruppo</p>
+
+      <h3 class="mt-8 text-xl font-semibold" style="color: var(--brand-dark);">
+        Sostegno alla socialita: cosa desideriamo fare insieme?
+      </h3>
+      <p class="mt-3 text-slate-600">
+        Ci rivolgiamo a famiglie interessate a sviluppare le competenze
+        relazionali dei figli, all'interno delle quali si possono incontrare
+        delle difficolta.
+      </p>
+      <p class="mt-3 text-slate-600">
+        Pensiamo a quei bambini o ragazzi con vissuti di isolamento rispetto ai
+        contesti di appartenenza, oppure a chi sembra non riuscire a costruire
+        interessi. Ci rivolgiamo anche a famiglie che si confrontano con la
+        disabilita dei figli, interessate a costruire una rete di rapporti che
+        orienti i figli nella socializzazione e nella crescita.
+      </p>
+      <p class="mt-3 text-slate-600">
+        Questo servizio si propone di sviluppare risorse nel rapporto con i
+        contesti di vita di riferimento per avviare insieme un progetto di
+        crescita desiderabile.
+      </p>
+      <p class="mt-3 text-sm text-slate-500">Setting: individuali, di gruppo</p>
+
+      <h3 class="mt-8 text-xl font-semibold" style="color: var(--brand-dark);">
+        Sostegno alla genitorialita e all'organizzazione familiare
+      </h3>
+      <p class="mt-3 text-slate-600">
+        Ci rivolgiamo a quelle famiglie che si trovano a dover fronteggiare la
+        quotidianita familiare e il suo avvicendarsi.
+      </p>
+      <p class="mt-3 text-slate-600">
+        Pensiamo ad esempio al conciliare gli impegni lavorativi o gli interessi
+        dei genitori e la vita dei figli; ma anche cambiamenti familiari, un
+        nuovo lavoro o un trasferimento in un'altra citta; oppure i rapporti
+        familiari stessi, come quello tra fratelli o genitori e figli, che si
+        possono organizzare su dimensioni conflittuali difficili da comprendere.
+      </p>
+      <p class="mt-3 text-slate-600">
+        Il servizio propone di pensare il ruolo genitoriale e le riorganizzazioni
+        familiari, nell'idea che questi si muovano non solo su dimensioni pratiche,
+        ma anche all'interno di rapporti familiari, amicali, territoriali.
+      </p>
+
+      <!--<a
+        href={`${base}contatti`}
+        class="mt-6 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Chiedi una consulenza
+      </a>-->
+       <section
+    class="mt-12 rounded-2xl p-8"
+    style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
+  >
+    <div
+      class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Chiedi una consulenza
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--muted);">
+          Se cerchi uno spazio per riorganizzare ciò che vivi in famiglia, scrivici.
+        </p>
+      </div>
+      <a
+        href="/contatti"
+        class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Scrivici
+      </a>
+    </div>
+  </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

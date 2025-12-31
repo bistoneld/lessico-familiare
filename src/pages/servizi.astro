@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home.png`;
+
+const services = [
+  {
+    title: "Famiglia",
+    href: `${base}servizi/famiglia`,
+    image: `${base}images/servizi/LF_Servizi_Famiglia.png`,
+    accent: "#6B8CC3",
+    description:
+      "Servizi per lo sviluppo delle competenze ad apprendere nelle relazioni di bambini e giovani.",
+  },
+  {
+    title: "Scuole",
+    href: `${base}servizi/scuole`,
+    image: `${base}images/servizi/LF_Servizi_Scuola.png`,
+    accent: "#7A9B6D",
+    description:
+      "Progetti e risorse per la promozione della convivenza scolastica e dei contesti di apprendimento.",
+  },
+  {
+    title: "Territori e organizzazioni",
+    href: `${base}servizi/territori`,
+    image: `${base}images/servizi/LF_Servizi_Territorio.png`,
+    accent: "#C08A5A",
+    description:
+      "Reti di prossimita tra cittadini e agenzie territoriali utili all'integrazione sociale.",
+  },
+  {
+    title: "Consulenza alla persona",
+    href: `${base}servizi/consulenza`,
+    image: `${base}images/servizi/LF_Servizi_Persona2.png`,
+    accent: "#8F7BC2",
+    description:
+      "Consulenze psicoterapeutiche per lo sviluppo creativo e integrato delle persone.",
+  },
+];
+---
+
+<Layout
+  title="Servizi"
+  description="Interveniamo nei contesti reali della convivenza: studio, domicilio, scuola, territorio e online."
+>
+  <Hero
+    eyebrow=" "
+    title="Servizi"
+    subtitle="Interveniamo nei contesti reali della convivenza: studio, domicilio, scuola, territorio e online."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Contattaci", href: "/contatti" }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="I NOSTRI AMBITI DI LAVORO" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Il nostro lavoro parte da cio che persone e gruppi vivono nei propri
+        ambienti di vita e di appartenenza: famiglia, scuola, reti sociali,
+        organizzazioni. Le emozioni e i significati che le accompagnano diventano
+        materiale di lavoro per comprendere cosa sta accadendo e per aprire
+        possibilita nuove, praticabili.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Progettiamo percorsi che tengono insieme cura e realta: colloqui
+        individuali, lavoro con coppie e famiglie, interventi con gruppi,
+        consulenze a scuole e servizi, laboratori. La scelta del setting viene
+        definita insieme, in rapporto agli obiettivi condivisi e alle condizioni
+        concrete.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Qui sotto trovi i nostri ambiti di lavoro: quattro aree che spesso si
+        intrecciano.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      {services.map((service) => (
+        <a
+          href={service.href}
+          class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
+              style={`background: linear-gradient(120deg, ${service.accent}cc, rgba(0,0,0,0.15));`}
+            ></div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold">{service.title}</h3>
+            <p class="mt-2 text-sm text-slate-600">{service.description}</p>
+          </div>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 h-1 opacity-0 transition group-hover:opacity-100"
+            style={`background: ${service.accent};`}
+          ></div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

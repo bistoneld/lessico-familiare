@@ -1,0 +1,96 @@
+---
+import Layout from "../../layouts/BlogPost.astro";
+import BannerStrip from "../../components/BannerStrip.astro";
+import Hero from "../../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout
+  title="Consulenza alla persona"
+  description="Consulenze psicoterapeutiche online o a studio per singoli, coppie e famiglie."
+>
+  <Hero
+    eyebrow=" "
+    title="Consulenza alla persona"
+    subtitle="Consulenze psicoterapeutiche per lo sviluppo creativo e integrato delle persone."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Chiedi una consulenza", href: `${base}contatti` }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="CONSULENZA ALLA PERSONA" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        I percorsi di vita di ciascuno possono incontrare eventi critici che
+        evocano emozioni dolorose e stagnanti a cui e difficile dare senso. Un
+        cambiamento di vita come un trasferimento, un nuovo lavoro o la perdita
+        dello stesso, un lutto, una separazione o una malattia possono generare
+        confusione e difficolta a procedere dentro una fiduciosa progettualita.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Questi momenti possono costituire un'importante occasione per ripensare
+        il proprio mondo emozionale se se ne parla con un professionista
+        competente.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Difatti, l'obiettivo del percorso di psicoterapia e sempre quello di
+        costruire assieme alla persona o il gruppo con cui lavoriamo una
+        pensabilita delle emozioni, spesso problematiche, che hanno motivato la
+        domanda di consulenza. Solo in questo modo e possibile superare gli
+        stati di sofferenza e costruire nuove occasioni di felice sviluppo e
+        fiduciosa progettualita.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Offriamo consulenze psicoterapeutiche online o a studio rivolte a
+        singoli, coppie e famiglie.
+      </p>
+
+      <!--<a
+        href={`${base}contatti`}
+        class="mt-6 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Chiedi una consulenza
+      </a>-->
+      
+  <section
+    class="mt-12 rounded-2xl p-8"
+    style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
+  >
+    <div
+      class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Chiedi una consulenza
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--muted);">
+          Se vuoi orientarti in un passaggio o cerchi uno spazio per dare senso a ciò che vivi, scrivici.
+        </p>
+      </div>
+      <a
+        href="/contatti"
+        class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Scrivici
+      </a>
+    </div>
+  </section>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

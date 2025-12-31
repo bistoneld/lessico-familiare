@@ -1,0 +1,209 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Prodotti.png`;
+---
+
+<Layout
+  title="Prodotti"
+  description="Progetti e pubblicazioni che raccontano il lavoro di Lessico Familiare."
+>
+  <Hero
+    eyebrow=" "
+    title="Prodotti"
+    subtitle="Progetti e pubblicazioni che raccontano il lavoro di Lessico Familiare nel tempo."
+    image={heroImg}
+    imageAlt="Dettaglio di libri e appunti"
+    cta={{ label: "Contattaci", href: "/contatti" }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="PROGETTI E PUBBLICAZIONI" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        In questa sezione raccogliamo alcuni dei prodotti del nostro lavoro di
+        questi anni. Progetti e pubblicazioni realizzate danno conto di quello
+        di cui ci siamo occupate nel tempo.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-10">
+      <article class="lf-card rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="lf-card__accent"></div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Laboratori
+        </h3>
+        <p class="mt-3 text-sm text-slate-600">
+          Durante il lockdown 2020, a seguito delle restrizioni pandemiche,
+          nasce il “laboratorio di Inventa Storie”, a partire dal desiderio di
+          tre amiche (tra gli 11 e i 12 anni) di trascorrere del tempo insieme
+          dopo il decreto “Io resto a casa”.
+        </p>
+        <p class="mt-3 text-sm text-slate-600">
+          E’ stato costruito un laboratorio dove, insieme, ci siamo dedicate
+          alla creazione di una storia attraverso un incontro settimanale in
+          videochiamata e l’apertura di un blog online.
+        </p>
+        <p class="mt-3 text-sm text-slate-600">
+          Questo progetto ha permesso di ripensare e riorganizzare le dimensioni
+          di incontro dei ragazzi messe in crisi dall’isolamento sociale.
+        </p>
+        <a
+          href="https://labinventastorie.blogspot.com/p/cose-il-laboratorio.html"
+          target="_blank"
+          class="mt-4 inline-flex items-center text-sm font-semibold text-slate-700 hover:text-slate-900"
+        >
+          Vai al laboratorio
+        </a>
+      </article>
+
+      <article class="lf-card rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="lf-card__accent"></div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Progetti per la scuola
+        </h3>
+        <p class="mt-3 text-sm text-slate-600">
+          AS 2020/2021 - La Didattica a Distanza come strumento a servizio della
+          formazione scolastica.
+        </p>
+        <p class="mt-3 text-sm text-slate-600">
+          All’interno del servizio di ascolto scolastico, il progetto ha
+          proposto ad alcune classi di un istituto superiore un percorso di
+          supporto alla formazione del gruppo classe come contributo per
+          elaborare i cambiamenti dei classici assetti scolastici, resisi
+          necessari a seguito delle esigenze di distanziamento sociale generate
+          dall’emergenza coronavirus (lezioni in presenza ed online).
+        </p>
+        <p class="mt-3 text-sm text-slate-600">
+          Il lavoro si è sviluppato in 3 incontri durante i quali, attraverso
+          esercitazioni di tipo proiettivo e discussioni di gruppo, gli studenti
+          sono stati sostenuti a riflettere sugli assetti relazionali entro i
+          quali si svolge il loro quotidiano apprendimento scolastico e le
+          modificazioni, qualora presenti, apportate a questo dalla didattica a
+          distanza.
+        </p>
+      </article>
+
+      <article class="lf-card rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="lf-card__accent"></div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Pubblicazioni
+        </h3>
+
+        <div class="mt-4 grid gap-6">
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wide"
+              style="color: var(--muted);"
+            >
+              Scuola
+            </h4>
+            <ul class="mt-2 list-disc pl-5 text-sm text-slate-600">
+              <li>
+                Nutricato, M. (2022) Costruire una funzione di ascolto in un
+                istituto superiore per intervenire sullo sviluppo della
+                competenza dei rapporti scolastici. Quaderni della rivista di
+                Psicologia Clinica.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wide"
+              style="color: var(--muted);"
+            >
+              Maternita ed eta dello sviluppo
+            </h4>
+            <ul class="mt-2 list-disc pl-5 text-sm text-slate-600">
+              <li>
+                Nutricato, M., Possidoni, E. &amp; Tanga, C. (2017). The anomie
+                and the fallback in psychotherapy training and new jobs. Rivista
+                di Psicologia Clinica, 2, 55-60. doi:10.14645/RPC.2017.2.699.
+              </li>
+              <li>
+                SPS Studio di Psicosociologia (2021). Neo madri: Una ricerca sul
+                vissuto circa il loro ruolo di madri, di donne che hanno avuto
+                un bambino da poco. Rivista di Psicologia Clinica, 62-85.
+                doi:10.14645/RPC.2021.1.849.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wide"
+              style="color: var(--muted);"
+            >
+              Sviluppo di agenzie culturali
+            </h4>
+            <ul class="mt-2 list-disc pl-5 text-sm text-slate-600">
+              <li>
+                Battisti, N. Dolcetti, F.R., Nutricato, M., Betti, F.S. &amp;
+                Propersi, G. (2016). An audience development questionnaire based
+                on Emotional Text Analysis: a festival case study. In: JADT
+                2016.
+              </li>
+              <li>
+                Paniccia, R. M. Sesto, C., Faro, D. Passavanti, D., Nutricato,
+                M., Verdone, E. &amp; Zanfino, S. (2014). Le biblioteche
+                comunali romane come luogo di incontro e convivenza. Costruire
+                comunita ospitali e sostenibili. Bologna: Dipartimento di
+                Psicologia, p. 269.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="text-sm font-semibold uppercase tracking-wide"
+              style="color: var(--muted);"
+            >
+              Ricerche
+            </h4>
+            <ul class="mt-2 list-disc pl-5 text-sm text-slate-600">
+              <li>
+                Carli, R., Di Ninni, A., Paniccia, R.M., Alecci, E., Aloi, C.V.,
+                Ambrosino, S., … Zanocco, M. (2020). La rappresentazione
+                dell’esordio della pandemia Covid-19 e del conseguente lockdown
+                in Italia. Rivista di Psicologia Clinica, 15(2), 28-63.
+                doi:10.14645/RPC.2020.2.835.
+              </li>
+              <li>
+                Amicosante, E., Barbizzi, L., Colaci, C., Colaianni, M.,
+                Diciolla, R., Fusacchia, M., Marotta, V., Monaldi, C., Polli,
+                M., Ponzetti, E., Ranieri, S., Sbardella, C., &amp; Zanfino, S.
+                (2020). La famiglia fascista. Una proposta di analisi
+                psicologico clinica. Quaderni Di Psicologia Clinica, 8(2),
+                76-85.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+  .lf-card {
+    background: linear-gradient(180deg, rgba(255, 250, 244, 0.95), #fff 60%);
+  }
+  .lf-card__accent {
+    height: 4px;
+    border-radius: 999px;
+    background: #d8c2a8;
+    margin: -0.25rem 0 1rem;
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Metodo.png`;
+---
+
+<Layout
+  title="Metodo"
+  description="Come lavoriamo insieme: il nostro metodo e i setting di lavoro."
+>
+  <Hero
+    eyebrow=" "
+    title="Metodo"
+    subtitle="Come lavoriamo insieme?"
+    image={heroImg}
+    imageAlt="Dettaglio di strumenti di lavoro"
+    cta={{ label: "Contattaci", href: "/contatti" }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="COME LAVORIAMO INSIEME" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Cio che ci orienta metodologicamente nel lavoro con i clienti sono le
+        emozioni che questi vivono nei propri contesti di appartenenza. Queste
+        possono essere dotate di nuovi significati lavorandole insieme.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Cosi gli obiettivi del lavoro terapeutico riguardano lo sviluppo del
+        rapporto tra i clienti e i loro contesti relazionali. Intendiamo lo
+        sviluppo come un processo creativo non preordinato, in cui professionista
+        e clienti generano assieme modalita desiderabili ed inedite di percepire
+        la realta.
+      </p>
+      <p class="mt-4 text-slate-600">
+        Questo e un processo attivabile attraverso diversi setting di lavoro, come:
+        i colloqui a studio o domiciliari, individuali o laboratoriali di gruppo,
+        tramite attivita di gioco o di studio. La scelta di lavorare con uno di
+        questi e pensata in rapporto agli obiettivi condivisi con il cliente.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

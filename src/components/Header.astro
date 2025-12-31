@@ -1,19 +1,20 @@
 ---
-const nav = [
-  { label: 'Chi siamo', href: '/chi-siamo' },
-  { label: 'Metodo', href: '/metodo' },
-  { label: 'Servizi', href: '/servizi'},
-  { label: 'Blog', href: '/blog' },
-];
-
 const base = import.meta.env.BASE_URL;
+const nav = [
+  { label: 'Chi siamo', href: `${base}chi-siamo` },
+  { label: 'Metodo', href: `${base}metodo` },
+  { label: 'Servizi', href: `${base}servizi` },
+  { label: 'Prodotti', href: `${base}prodotti` },
+  { label: 'Reti', href: `${base}reti` },
+  { label: 'Blog', href: `${base}blog` },
+];
 ---
 
 <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-slate-200">
   <div class="mx-auto max-w-5xl px-4">
     <div class="flex h-16 items-center justify-between gap-4">
       <!-- Brand -->
-      <a href="/" class="flex items-center gap-3 min-w-0">
+      <a href={base} class="flex items-center gap-3 min-w-0">
         <img
           src={`${base}images/logo/LF_logo-mark.png`}
           alt="Lessico Familiare"
@@ -45,7 +46,7 @@ const base = import.meta.env.BASE_URL;
       <!-- Actions -->
       <div class="flex items-center gap-2">
         <a
-          href="/contatti"
+          href={`${base}contatti`}
           class="!text-white hidden sm:inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition"
           style="background: var(--brand);"
         >
@@ -68,7 +69,7 @@ const base = import.meta.env.BASE_URL;
                 </a>
               ))}
               <a
-                href="/contatti"
+                href={`${base}contatti`}
                 class="mt-2 block rounded-xl px-3 py-2 text-sm font-semibold text-white text-center hover:opacity-90 transition"
                 style="background: var(--brand);"
               >
