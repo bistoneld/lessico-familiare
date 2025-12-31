@@ -8,7 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: "https://bistoneld.github.io/lessico-familiare/",
+  base: "/lessico-familiare/",
   integrations: [mdx(), sitemap()],
 
   vite: {
