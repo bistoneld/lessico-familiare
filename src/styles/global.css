@@ -3,35 +3,40 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+@import "tailwindcss";
 
+/* Brand tokens (palette) */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
+  /* 🎯 BRAND */
+  --brand: #7158b6;        /* viola identitario */
+  --brand-dark: #423366;  /* titoli / header */
+  --brand-soft: #e6e1f4;  /* sfondi narrativi */
+  /*--accent: #F27B35;*/
+
+  /* 📝 TESTI */
+  --text: #1f1f33;        /* quasi nero, caldo */
+  --muted: #5e5e7a;       /* testo secondario */
+
+  /* 🧱 SFONDI */
+  --bg: #ffffff;
+  --bg-soft: #f7f6fb;     /* bianco violaceo */
+
+  /* ⚙️ NEUTRI */
+  --black: 31, 31, 51;
+  --gray: 120, 120, 150;
+  --gray-light: 236, 236, 246;
+  --gray-dark: 70, 70, 100;
+
+  --gray-gradient: rgba(var(--gray-light), 60%), #fff;
+
+  /* 🧸 OMBRE (molto soft) */
+  --box-shadow:
+    0 1px 3px rgba(var(--gray-dark), 0.14),
+    0 10px 30px rgba(var(--gray-dark), 0.12);
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
+
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "Quicksand", ui-sans-serif, system-ui, sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -152,4 +157,58 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Base typography (Tailwind layer) */
+@layer base {
+  html { font-family: "Quicksand", ui-sans-serif, system-ui, sans-serif; }
+  h1,h2,h3,h4,h5,h6 { font-family: "Quicksand", ui-sans-serif, system-ui, sans-serif; }
+  body { background: var(--bg); color: var(--text); }
+}
+
+@layer utilities {
+  .full-bleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* BRAND HERO – dissolvenza irregolare perimetro */
+.brand-hero {
+  background: var(--brand);
+}
+
+/* dissolvenza superiore */
+.brand-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* dissolvenza inferiore */
+.brand-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+  z-index: 2;
+  pointer-events: none;
 }

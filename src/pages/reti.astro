@@ -1,0 +1,177 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const heroImg = "/images/pages/LF_Reti.png";
+
+const partnerGroups = [
+  {
+    title: "Scuole",
+    image: "/images/pages/LF_Chi_Siamo.png",
+    accent: "#4C7BBF",
+    items: [
+      { name: "IC Don Milani", href: "#" },
+      { name: "Liceo Galileo", href: "#" },
+      { name: "Istituto Comprensivo Aurora", href: "#" },
+      { name: "CFP Ponte Nuovo", href: "#" },
+    ],
+  },
+  {
+    title: "Servizi e enti",
+    image: "/images/pages/LF_Home.png",
+    accent: "#7A8F5A",
+    items: [
+      { name: "ATS Metropolitana", href: "#" },
+      { name: "Centro Famiglie Nord", href: "#" },
+      { name: "Servizi Sociali Zona 5", href: "#" },
+      { name: "Consultorio Il Faro", href: "#" },
+    ],
+  },
+  {
+    title: "Cultura e territorio",
+    image: "/images/pages/LF_Home2.png",
+    accent: "#C28A4B",
+    items: [
+      { name: "Biblioteca Civica", href: "#" },
+      { name: "Casa della Cultura", href: "#" },
+      { name: "Museo di Comunita", href: "#" },
+      { name: "Spazio Giovani", href: "#" },
+    ],
+  },
+  {
+    title: "Associazioni",
+    image: "/images/pages/LF_Prodotti.png",
+    accent: "#8B6CBF",
+    items: [
+      { name: "Associazione Insieme", href: "#" },
+      { name: "Rete Educativa Quartiere", href: "#" },
+      { name: "Cooperativa Ponte", href: "#" },
+      { name: "APS Orizzonte", href: "#" },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Reti"
+  description="Collaborazioni e reti di lavoro di Lessico Familiare"
+>
+  <Hero
+    eyebrow=" "
+    title="Reti"
+    subtitle="Relazioni di lavoro che tengono insieme persone, servizi e luoghi della comunità."
+    image={heroImg}
+    imageAlt="Dettaglio di un tavolo con libri"
+    cta={{ label: "Proponi una collaborazione", href: "/contatti" }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="RETI CHE FANNO SPAZIO ALLO SVILUPPO" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Il nostro lavoro nasce e cresce nel dialogo con le organizzazioni con
+        cui collaboriamo.<br />
+        Le reti sono per noi spazi di lavoro condiviso: luoghi in cui intrecciamo
+        competenze e risorse, mettendo in relazione scuole, servizi e realtà culturali
+        con le comunità dei territori.<br />
+        Da questi incontri prendono forma contesti di sviluppo e di convivenza, pensati
+        insieme e costruiti nel tempo.
+        <br /><br />
+        In questa pagina raccogliamo una panoramica delle realtà con cui, nel tempo,
+        abbiamo lavorato o lavoriamo: scuole, servizi ed enti, progetti culturali
+        e territoriali, associazioni e gruppi locali.<br />
+        L’elenco è organizzato per ambiti e presenta, per ciascuna realtà, una breve
+        indicazione del contesto di collaborazione.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {
+        partnerGroups.map((group) => (
+          <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <div class="relative aspect-[16/6] overflow-hidden">
+              <img
+                src={group.image}
+                alt={group.title}
+                class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
+                style={`background: linear-gradient(120deg, ${group.accent}cc, rgba(0,0,0,0.15));`}
+              ></div>
+              <div class="absolute inset-0 flex items-end p-4 sm:p-5">
+                <div class="text-white">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] opacity-90">
+                    Categoria
+                  </p>
+                  <h4 class="text-xl font-semibold" style="color: var(--brand-soft);">
+                    {group.title}
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <ul class="p-5 grid gap-3">
+              {group.items.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="flex items-center justify-between rounded-xl border border-slate-100 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                  >
+                    <span>{item.name}</span>
+                    <span class="text-xs text-slate-400">Partner</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div
+              class="pointer-events-none absolute inset-x-0 bottom-0 h-1 opacity-0 transition group-hover:opacity-100"
+              style={`background: ${group.accent};`}
+            ></div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    class="mt-12 rounded-2xl p-8"
+    style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
+  >
+    <div
+      class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <div>
+        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+          Proponi una collaborazione
+        </h3>
+        <p class="mt-2 text-sm" style="color: var(--muted);">
+          Se vuoi costruire un progetto condiviso, raccontaci il contesto e gli
+          obiettivi.
+        </p>
+      </div>
+      <a
+        href="/contatti"
+        class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Scrivici
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

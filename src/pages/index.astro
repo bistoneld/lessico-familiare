@@ -1,49 +1,225 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BlogPost.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+const heroImg = "/images/pages/LF_Home.png";
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="py-8">
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <img
+          src="/images/logo/LF_logo-completo.png"
+          alt="Lessico Familiare"
+          class="h-10 w-auto"
+          loading="eager"
+        />
+        <!--<span class="text-sm tracking-wide uppercase text-slate-500">Studio di psicoterapia</span>-->
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-semibold tracking-tight">
+        Lessico Familiare
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl">
+        Costruiamo contesti relazionali creativi per il benessere delle persone, delle famiglie e delle comunità.
+      </p>
+
+	  
+<BannerStrip title="SERVIZI A" />
+
+<Hero
+  title="Consulenza alla persona"
+  subtitle="Consulenze psicoterapeutiche per lo sviluppo creativo ed integrato delle persone"
+  image={heroImg}
+  imageAlt="Angolo dello studio"
+  sideLabel="Consulenze"
+  sideText="per lo sviluppo creativo delle persone"
+  cta={{ label: "Scopri di più", href: "/servizi/consulenza-alla-persona" }}
+/>
+<BannerStrip title="SERVIZI B" />
+
+<section class="rounded-2xl p-8 mt-10"
+  style="background: var(--brand-soft); box-shadow: var(--box-shadow);">
+  <h2 class="text-2xl font-semibold mb-2" style="color: var(--brand-dark);">
+    Costruire contesti per lo sviluppo
+  </h2>
+  <p class="text-base" style="color: var(--muted);">
+    Lavoriamo alla costruzione di contesti relazionali creativi e produttivi.
+  </p>
+</section>
+
+<BannerStrip title="XXXXXX" />
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a
+          href="/contatti"
+          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition"
+        >
+          Contattaci
+        </a>
+        <a
+          href="/metodo"
+          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold border border-slate-300 hover:border-slate-400 transition"
+        >
+          Il nostro metodo
+        </a>
+      </div>
+    </div>
+  </section>
+  
+<BannerStrip title="YYYY" />
+  <section class="full-bleed my-8">
+  <div class="relative overflow-hidden text-white brand-hero">
+
+    <!-- Onda superiore (irregolare) -->
+    <svg class="absolute top-0 left-0 w-full h-14 md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,40 C120,70 240,10 360,35 C480,60 600,95 720,70 C840,45 960,5 1080,30 C1140,42 1170,50 1200,45 L1200,0 L0,0 Z"
+        fill="white"
+        opacity="0.12"
+      />
+      <path
+        d="M0,55 C150,90 280,20 410,50 C560,85 650,110 780,85 C920,55 1030,18 1200,55 L1200,0 L0,0 Z"
+        fill="white"
+        opacity="0.08"
+      />
+    </svg>
+
+    <!-- Contenuto centrato -->
+    <div class="mx-auto max-w-5xl px-4 py-14 md:py-16">
+      <p class="text-xs md:text-sm tracking-[0.22em] uppercase opacity-90">
+        Lessico Familiare
+      </p>
+
+      <h2 class="mt-3 text-2xl md:text-4xl font-semibold tracking-tight">
+        Costruire contesti per lo sviluppo e la creatività sociale
+      </h2>
+
+      <p class="mt-4 max-w-3xl text-sm md:text-base opacity-95">
+        Interveniamo nei problemi che persone e organizzazioni vivono nei propri contesti di riferimento,
+        costruendo insieme modalità desiderabili e nuove di stare nelle relazioni.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a
+          href="/metodo"
+          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold bg-white text-slate-900 hover:bg-white/90 transition"
+        >
+          Come lavoriamo
+        </a>
+        <a
+          href="/chi-siamo"
+          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold border border-white/60 hover:border-white transition"
+        >
+          Chi siamo
+        </a>
+      </div>
+    </div>
+
+    <!-- Onda inferiore (irregolare) -->
+    <svg class="absolute bottom-0 left-0 w-full h-16 md:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,80 C140,120 260,30 400,70 C540,110 640,120 780,85 C920,50 1040,15 1200,65 L1200,120 L0,120 Z"
+        fill="white"
+        opacity="0.14"
+      />
+      <path
+        d="M0,95 C160,135 300,55 450,90 C600,125 720,120 860,95 C1010,68 1100,40 1200,85 L1200,120 L0,120 Z"
+        fill="white"
+        opacity="0.09"
+      />
+    </svg>
+  </div>
+</section>
+
+  <section class="py-8">
+	<div class="flex items-end justify-between gap-4">
+		<div>
+		<h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Servizi</h2>
+		<p class="mt-2 text-slate-600 max-w-2xl">
+			Interveniamo nei contesti reali della convivenza: studio, domicilio, scuola, territorio e online.
+		</p>
+		</div>
+		<a href="/servizi" class="hidden sm:inline text-sm font-semibold text-slate-700 hover:text-slate-900">
+		Vedi tutto →
+		</a>
+	</div>
+
+	<div class="mt-6 grid gap-5 md:grid-cols-2">
+		<!-- Famiglia -->
+		<a href="/servizi/famiglia" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
+		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
+			<img
+			src="/images/servizi/LF_Servizi_Famiglia.png"
+			alt="Famiglia"
+			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
+			loading="lazy"
+			/>
+		</div>
+		<div class="p-5">
+			<h3 class="text-lg font-semibold">Famiglia</h3>
+			<p class="mt-2 text-sm text-slate-600">
+			Servizi per lo sviluppo delle competenze ad apprendere nelle relazioni di bambini e giovani.
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+		</div>
+		</a>
+
+		<!-- Scuole -->
+		<a href="/servizi/scuole" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
+		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
+			<img
+			src="/images/servizi/LF_Servizi_Scuola.png"
+			alt="Scuole"
+			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
+			loading="lazy"
+			/>
+		</div>
+		<div class="p-5">
+			<h3 class="text-lg font-semibold">Scuole</h3>
+			<p class="mt-2 text-sm text-slate-600">
+			Progetti e risorse per la promozione della convivenza scolastica e dei contesti di apprendimento.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+		</div>
+		</a>
+
+		<!-- Territori -->
+		<a href="/servizi/territori" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
+		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
+			<img
+			src="/images/servizi/LF_Servizi_Territorio.png"
+			alt="Territori e organizzazioni"
+			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
+			loading="lazy"
+			/>
+		</div>
+		<div class="p-5">
+			<h3 class="text-lg font-semibold">Territori e organizzazioni</h3>
+			<p class="mt-2 text-sm text-slate-600">
+			Reti di prossimità tra cittadini e agenzie territoriali utili all’integrazione sociale.
 			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+		</div>
+		</a>
+
+		<!-- Consulenza -->
+		<a href="/servizi/consulenza" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
+		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
+			<img
+			src="/images/servizi/LF_Servizi_Persona2.png"
+			alt="Consulenza alla persona"
+			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
+			loading="lazy"
+			/>
+		</div>
+		<div class="p-5">
+			<h3 class="text-lg font-semibold">Consulenza alla persona</h3>
+			<p class="mt-2 text-sm text-slate-600">
+			Consulenze psicoterapeutiche per lo sviluppo creativo e integrato delle persone.
 			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</div>
+		</a>
+	</div>
+	</section>
+
+</BaseLayout>

@@ -1,0 +1,414 @@
+---
+/**
+ * Hero.astro — Lessico Familiare
+ * Uso:
+ * <Hero
+ *   title="Consulenza alla persona"
+ *   subtitle="Consulenze psicoterapeutiche per lo sviluppo creativo ed integrato delle persone"
+ *   image={heroImg}
+ *   imageAlt="Interno dello studio"
+ *   sideLabel="Consulenze"
+ *   sideText="per lo sviluppo creativo delle persone"
+ *   eyebrow="Lessico Familiare"
+ *   motion={false} o true per far muovere l'immagine
+ *   cta={{ label: "Scopri di più", href: "/servizi/consulenza" }}
+ * />
+ */
+
+type Cta = { label: string; href: string };
+
+type Props = {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+
+  // Puoi passare sia una stringa URL che un ImageMetadata importato
+  image: string | { src: string };
+  imageAlt?: string;
+
+  cta?: Cta;
+  cta2?: Cta;
+
+  align?: "left" | "center";
+  size?: "md" | "lg";
+
+  // 0..1 (quanto “scurire” la foto)
+  overlay?: number;
+
+  // testo verticale (opzionale, stile vecchio sito)
+  sideLabel?: string;
+  sideText?: string;
+
+  // movimento leggero su load/scroll (disattivabile)
+  motion?: boolean;
+
+  class?: string;
+  as?: keyof HTMLElementTagNameMap;
+  fullBleed?: boolean;
+};
+
+const {
+  title,
+  subtitle,
+  eyebrow,
+
+  image,
+  imageAlt = "",
+
+  cta,
+  cta2,
+
+  align = "left",
+  size = "lg",
+  overlay = 0.55,
+
+  sideLabel,
+  sideText,
+
+  motion = true,
+
+  class: className = "",
+  as = "header",
+  fullBleed = true,
+} = Astro.props as Props;
+
+const Tag = as;
+const imgSrc = typeof image === "string" ? image : image?.src;
+const fullBleedClass = fullBleed ? "full-bleed" : "";
+---
+
+<Tag
+  class={`lf-hero ${fullBleedClass} lf-hero--${size} lf-hero--${align} ${motion ? "lf-hero--motion" : ""} ${className}`}
+  data-motion={motion ? "true" : "false"}
+  style={`--lf-hero-overlay:${overlay};`}
+>
+  <!-- Media -->
+  <img
+    class="lf-hero__img"
+    src={imgSrc}
+    alt={imageAlt}
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+
+  <!-- Scrim (scurisce + sfuma) -->
+  <div class="lf-hero__scrim" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="lf-hero__inner">
+    {(sideLabel || sideText) && (
+      <aside class="lf-hero__side" aria-hidden="true">
+        {sideLabel && <span class="lf-hero__sideLabel">{sideLabel}</span>}
+        {sideText && <span class="lf-hero__sideText">{sideText}</span>}
+      </aside>
+    )}
+
+    <div class="lf-hero__content">
+      {eyebrow && <p class="lf-hero__eyebrow">{eyebrow}</p>}
+
+      <h1 class="lf-hero__title">{title}</h1>
+
+      {subtitle && <p class="lf-hero__subtitle">{subtitle}</p>}
+
+      <slot name="extra" />
+
+    </div>
+  </div>
+
+  {(cta || cta2) && (
+    <div class="lf-hero__actions">
+      {cta && (
+        <a class="lf-hero__btn lf-hero__btn--ghost" href={cta.href}>
+          {cta.label}
+        </a>
+      )}
+      {cta2 && (
+        <a class="lf-hero__btn lf-hero__btn--soft" href={cta2.href}>
+          {cta2.label}
+        </a>
+      )}
+    </div>
+  )}
+</Tag>
+
+<style>
+  .lf-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: var(--radius, 18px);
+    box-shadow: var(--box-shadow);
+    min-height: var(--lf-hero-minh, 60svh);
+    background: #111;
+    --lf-hero-inner: min(1100px, 100%);
+    --lf-hero-pad: clamp(1.1rem, 3.2vw, 2.4rem);
+    --lf-hero-side: max((100% - 1100px) / 2, 0px);
+  }
+
+  .lf-hero.full-bleed {
+    border-radius: 0;
+  }
+
+  .lf-hero--md {
+    --lf-hero-minh: 48svh;
+  }
+  .lf-hero--lg {
+    --lf-hero-minh: 62svh;
+  }
+
+  .lf-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    transform: translateY(var(--lf-hero-shift, 0px)) scale(1.05);
+  }
+
+  .lf-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, calc(var(--lf-hero-overlay) + 0.18)) 0%,
+        rgba(0, 0, 0, calc(var(--lf-hero-overlay) - 0.05)) 55%,
+        rgba(0, 0, 0, 0) 100%
+      );
+  }
+
+  .lf-hero__inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: var(--lf-hero-inner);
+    margin-inline: auto;
+    padding: var(--lf-hero-pad);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(0.8rem, 2vw, 1.6rem);
+    align-items: center;
+  }
+
+  /* “Testo verticale” stile vecchio sito */
+  .lf-hero__side {
+    display: none;
+    align-self: stretch;
+    padding-inline: 0.2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .lf-hero__sideLabel,
+  .lf-hero__sideText {
+    display: block;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1;
+  }
+
+  .lf-hero__sideText {
+    margin-top: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .lf-hero__content {
+    max-width: 40rem;
+    color: #fff;
+  }
+
+  .lf-hero--center .lf-hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .lf-hero--center .lf-hero__content {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .lf-hero__eyebrow {
+    margin: 0 0 0.6rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .lf-hero__title {
+    color: var(--brand-soft);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.0rem, 5.2vw, 3.6rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .lf-hero__subtitle {
+    margin: 0.8rem 0 0;
+    max-width: 42ch;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(1.0rem, 2.2vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  .lf-hero__actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+    z-index: 3;
+  }
+
+  .lf-hero--center .lf-hero__actions {
+    justify-content: center;
+  }
+
+  /* CTA stile vecchio: outline, pulita */
+  .lf-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    user-select: none;
+  }
+
+  .lf-hero__btn--ghost {
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.68);
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+  }
+
+  .lf-hero__btn--soft {
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+  }
+
+  .lf-hero__btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .lf-hero--motion .lf-hero__img {
+    will-change: transform;
+    animation: heroFloatIn 1200ms ease both;
+  }
+
+  @keyframes heroFloatIn {
+    from {
+      transform: translateY(14px) scale(1.08);
+    }
+    to {
+      transform: translateY(var(--lf-hero-shift, 0px)) scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lf-hero__img {
+      animation: none;
+      transform: scale(1.02);
+    }
+  }
+
+  @media (min-width: 820px) {
+    .lf-hero__side {
+      display: block;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .lf-hero__actions {
+      position: absolute;
+      right: calc(var(--lf-hero-side) + var(--lf-hero-pad));
+      bottom: var(--lf-hero-pad);
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .lf-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lf-hero__inner {
+      grid-template-columns: 1fr;
+      width: 100%;
+      text-align: center;
+    }
+    .lf-hero__content {
+      text-align: center;
+    }
+    .lf-hero__actions {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .lf-hero__scrim {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, calc(var(--lf-hero-overlay) + 0.22)) 0%,
+          rgba(0, 0, 0, calc(var(--lf-hero-overlay) - 0.05)) 55%,
+          rgba(0, 0, 0, 0.10) 100%
+        );
+    }
+    .lf-hero__subtitle {
+      max-width: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const heroes = document.querySelectorAll(".lf-hero[data-motion='true']");
+    if (!heroes.length) return;
+
+    let ticking = false;
+    const clamp = (min, value, max) => Math.max(min, Math.min(value, max));
+
+    const update = () => {
+      ticking = false;
+      const vh = window.innerHeight || 800;
+
+      heroes.forEach((hero) => {
+        const rect = hero.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const progress = (center - vh / 2) / vh;
+        const shift = clamp(-14, progress * -12, 14);
+        hero.style.setProperty("--lf-hero-shift", `${shift}px`);
+      });
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+  })();
+</script>

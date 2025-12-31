@@ -1,0 +1,71 @@
+---
+const {
+  title = "TITOLO",
+  as = "div",
+  class: className = "",
+} = Astro.props;
+
+const Tag = as;
+---
+
+
+<Tag class={`lf-bannerstrip full-bleed ${className}`}>
+  <span class="lf-bannerstrip__title">{title}</span>
+</Tag>
+
+
+<style>
+  .lf-bannerstrip {
+    position: relative;
+    background: var(--brand);
+    color: #fff;
+
+    padding: 0.9rem 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2.3vw, 1.8rem);
+    line-height: 1;
+
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    
+  }
+
+  .lf-bannerstrip__title {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* Pennellata sopra e sotto */
+  .lf-bannerstrip::before,
+  .lf-bannerstrip::after {
+    content: "";
+    position: absolute;
+    left: -2%;
+    width: 104%;
+    height: 18px;
+    background: var(--brand);
+    z-index: 1;
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath fill='black' d='M0,26 C80,10 140,52 220,34 C300,16 360,44 440,30 C520,16 580,48 660,32 C740,16 800,46 880,30 C960,14 1020,50 1100,32 C1160,22 1180,26 1200,28 L1200,60 L0,60 Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath fill='black' d='M0,26 C80,10 140,52 220,34 C300,16 360,44 440,30 C520,16 580,48 660,32 C740,16 800,46 880,30 C960,14 1020,50 1100,32 C1160,22 1180,26 1200,28 L1200,60 L0,60 Z'/%3E%3C/svg%3E");
+
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .lf-bannerstrip::before {
+    top: -8px;
+  }
+
+  .lf-bannerstrip::after {
+    bottom: -8px;
+    transform: scaleY(-1);
+  }
+</style>
