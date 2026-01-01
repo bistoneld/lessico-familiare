@@ -1,226 +1,292 @@
 ---
-import BaseLayout from '../layouts/BlogPost.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseLayout from "../layouts/BlogPost.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import BannerStrip from "../components/BannerStrip.astro";
+
 import Hero from "../components/Hero.astro";
+
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Home.png`;
+const services = [
+  {
+    title: "Famiglie",
+    href: `${base}servizi/famiglia`,
+    image: `${base}images/servizi/LF_Servizi_Famiglia.png`,
+    accent: "#6B8CC3",
+    description:
+      "Servizi per lo sviluppo delle competenze ad apprendere nelle relazioni di bambini e giovani.",
+  },
+  {
+    title: "Scuole",
+    href: `${base}servizi/scuole`,
+    image: `${base}images/servizi/LF_Servizi_Scuola.png`,
+    accent: "#7A9B6D",
+    description:
+      "Progetti e risorse per la promozione della convivenza scolastica.",
+  },
+  {
+    title: "Territori e organizzazioni",
+    href: `${base}servizi/territori`,
+    image: `${base}images/servizi/LF_Servizi_Territorio.png`,
+    accent: "#C08A5A",
+    description:
+      "Reti di prossimità tra cittadini e agenzie territoriali utili all’integrazione sociale delle persone.",
+  },
+  {
+    title: "Consulenza alla persona",
+    href: `${base}servizi/consulenza`,
+    image: `${base}images/servizi/LF_Servizi_Persona2.png`,
+    accent: "#8F7BC2",
+    description:
+      "Consulenze psicoterapeutiche per lo sviluppo creativo ed integrato delle persone.",
+  },
+];
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <section class="py-8">
-    <div class="flex flex-col gap-6">
-      <div class="flex items-center gap-3">
+  
+  <section class="logo-splash full-bleed" aria-hidden="true">
         <img
           src={`${base}images/logo/LF_logo-completo.png`}
           alt="Lessico Familiare"
-          class="h-10 w-auto"
+          class="logo-splash__img"
           loading="eager"
         />
-        <!--<span class="text-sm tracking-wide uppercase text-slate-500">Studio di psicoterapia</span>-->
-      </div>
+      </section>
 
-      <h1 class="text-4xl md:text-6xl font-semibold tracking-tight">
-        Lessico Familiare
-      </h1>
 
-      <p class="text-lg md:text-xl text-slate-600 max-w-3xl">
-        Costruiamo contesti relazionali creativi per il benessere delle persone, delle famiglie e delle comunità.
+  <div class="home-content">
+    
+    <section>
+      
+  <Hero
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    align="left"
+    size="md"
+  />
+      <BannerStrip title="COSTRUIRE CONTESTI PER LO SVILUPPO E LA CREATIVITÀ SOCIALE" />
+      
+    </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Lessico Familiare è uno studio di psicoterapia che interviene sui problemi che persone ed organizzazioni vivono nei propri contesti di riferimento. 
+        Lavoriamo alla costruzione di contesti relazionali creativi e produttivi
+        tra le persone, che permettano di sostenere i desideri di sviluppo di
+        ciascuno.
       </p>
+      <p class="mt-4 text-slate-600">
+        Accompagniamo i percorsi di crescita di bambini, giovani e delle loro
+        famiglie. Interveniamo sull’elaborazione delle emozioni legate ai
+        processi di apprendimento e socializzazione, sia con singoli che con
+        consulenze a istituzioni scolastiche e luoghi della cultura. Il lavoro
+        si declina contestualmente in diversi setting quali lo studio, il
+        domicilio e online.
+      </p>
+    </div>
+    
+      <BannerStrip title="Servizi" />
 
-	  
-<BannerStrip title="SERVIZI A" />
-
-<Hero
-  title="Consulenza alla persona"
-  subtitle="Consulenze psicoterapeutiche per lo sviluppo creativo ed integrato delle persone"
-  image={heroImg}
-  imageAlt="Angolo dello studio"
-  sideLabel="Consulenze"
-  sideText="per lo sviluppo creativo delle persone"
-  cta={{ label: "Scopri di più", href: "/servizi/consulenza-alla-persona" }}
-/>
-<BannerStrip title="SERVIZI B" />
-
-<section class="rounded-2xl p-8 mt-10"
-  style="background: var(--brand-soft); box-shadow: var(--box-shadow);">
-  <h2 class="text-2xl font-semibold mb-2" style="color: var(--brand-dark);">
-    Costruire contesti per lo sviluppo
-  </h2>
-  <p class="text-base" style="color: var(--muted);">
-    Lavoriamo alla costruzione di contesti relazionali creativi e produttivi.
-  </p>
-</section>
-
-<BannerStrip title="XXXXXX" />
-      <div class="flex flex-col sm:flex-row gap-3">
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      {services.map((service) => (
         <a
-          href="/contatti"
-          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 transition"
+          href={service.href}
+          class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
         >
-          Contattaci
+          <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
+              style={`background: linear-gradient(120deg, ${service.accent}cc, rgba(0,0,0,0.15));`}
+            ></div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold">{service.title}</h3>
+            <p class="mt-2 text-sm text-slate-600">{service.description}</p>
+          </div>
+          <div
+            class="pointer-events-none absolute inset-x-0 bottom-0 h-1 opacity-0 transition group-hover:opacity-100"
+            style={`background: ${service.accent};`}
+          ></div>
         </a>
+      ))}
+    </div>
+
+    <section
+      class="mt-12 rounded-2xl p-8"
+      style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
+    >
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+            Contattaci
+          </h3>
+          <p class="mt-2 text-sm" style="color: var(--muted);">
+            Se vuoi orientarti sui servizi più adatti, scrivici.
+          </p>
+        </div>
         <a
-          href="/metodo"
-          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold border border-slate-300 hover:border-slate-400 transition"
+          href={`${base}contatti`}
+          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
         >
-          Il nostro metodo
+          Scrivici
         </a>
       </div>
-    </div>
+    </section>
   </section>
-  
-<BannerStrip title="YYYY" />
-  <section class="full-bleed my-8">
-  <div class="relative overflow-hidden text-white brand-hero">
-
-    <!-- Onda superiore (irregolare) -->
-    <svg class="absolute top-0 left-0 w-full h-14 md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-      <path
-        d="M0,40 C120,70 240,10 360,35 C480,60 600,95 720,70 C840,45 960,5 1080,30 C1140,42 1170,50 1200,45 L1200,0 L0,0 Z"
-        fill="white"
-        opacity="0.12"
-      />
-      <path
-        d="M0,55 C150,90 280,20 410,50 C560,85 650,110 780,85 C920,55 1030,18 1200,55 L1200,0 L0,0 Z"
-        fill="white"
-        opacity="0.08"
-      />
-    </svg>
-
-    <!-- Contenuto centrato -->
-    <div class="mx-auto max-w-5xl px-4 py-14 md:py-16">
-      <p class="text-xs md:text-sm tracking-[0.22em] uppercase opacity-90">
-        Lessico Familiare
-      </p>
-
-      <h2 class="mt-3 text-2xl md:text-4xl font-semibold tracking-tight">
-        Costruire contesti per lo sviluppo e la creatività sociale
-      </h2>
-
-      <p class="mt-4 max-w-3xl text-sm md:text-base opacity-95">
-        Interveniamo nei problemi che persone e organizzazioni vivono nei propri contesti di riferimento,
-        costruendo insieme modalità desiderabili e nuove di stare nelle relazioni.
-      </p>
-
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
-        <a
-          href="/metodo"
-          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold bg-white text-slate-900 hover:bg-white/90 transition"
-        >
-          Come lavoriamo
-        </a>
-        <a
-          href="/chi-siamo"
-          class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold border border-white/60 hover:border-white transition"
-        >
-          Chi siamo
-        </a>
-      </div>
-    </div>
-
-    <!-- Onda inferiore (irregolare) -->
-    <svg class="absolute bottom-0 left-0 w-full h-16 md:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-      <path
-        d="M0,80 C140,120 260,30 400,70 C540,110 640,120 780,85 C920,50 1040,15 1200,65 L1200,120 L0,120 Z"
-        fill="white"
-        opacity="0.14"
-      />
-      <path
-        d="M0,95 C160,135 300,55 450,90 C600,125 720,120 860,95 C1010,68 1100,40 1200,85 L1200,120 L0,120 Z"
-        fill="white"
-        opacity="0.09"
-      />
-    </svg>
   </div>
-</section>
-
-  <section class="py-8">
-	<div class="flex items-end justify-between gap-4">
-		<div>
-		<h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Servizi</h2>
-		<p class="mt-2 text-slate-600 max-w-2xl">
-			Interveniamo nei contesti reali della convivenza: studio, domicilio, scuola, territorio e online.
-		</p>
-		</div>
-		<a href="/servizi" class="hidden sm:inline text-sm font-semibold text-slate-700 hover:text-slate-900">
-		Vedi tutto →
-		</a>
-	</div>
-
-	<div class="mt-6 grid gap-5 md:grid-cols-2">
-		<!-- Famiglia -->
-		<a href="/servizi/famiglia" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
-		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
-			<img
-			src={`${base}images/servizi/LF_Servizi_Famiglia.png`}
-			alt="Famiglia"
-			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
-			loading="lazy"
-			/>
-		</div>
-		<div class="p-5">
-			<h3 class="text-lg font-semibold">Famiglia</h3>
-			<p class="mt-2 text-sm text-slate-600">
-			Servizi per lo sviluppo delle competenze ad apprendere nelle relazioni di bambini e giovani.
-			</p>
-		</div>
-		</a>
-
-		<!-- Scuole -->
-		<a href="/servizi/scuole" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
-		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
-			<img
-			src={`${base}images/servizi/LF_Servizi_Scuola.png`}
-			alt="Scuole"
-			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
-			loading="lazy"
-			/>
-		</div>
-		<div class="p-5">
-			<h3 class="text-lg font-semibold">Scuole</h3>
-			<p class="mt-2 text-sm text-slate-600">
-			Progetti e risorse per la promozione della convivenza scolastica e dei contesti di apprendimento.
-			</p>
-		</div>
-		</a>
-
-		<!-- Territori -->
-		<a href="/servizi/territori" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
-		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
-			<img
-			src={`${base}images/servizi/LF_Servizi_Territorio.png`}
-			alt="Territori e organizzazioni"
-			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
-			loading="lazy"
-			/>
-		</div>
-		<div class="p-5">
-			<h3 class="text-lg font-semibold">Territori e organizzazioni</h3>
-			<p class="mt-2 text-sm text-slate-600">
-			Reti di prossimità tra cittadini e agenzie territoriali utili all’integrazione sociale.
-			</p>
-		</div>
-		</a>
-
-		<!-- Consulenza -->
-		<a href="/servizi/consulenza" class="group rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 transition">
-		<div class="aspect-[16/9] overflow-hidden bg-slate-100">
-			<img
-			src={`${base}images/servizi/LF_Servizi_Persona2.png`}
-			alt="Consulenza alla persona"
-			class="h-full w-full object-cover group-hover:scale-105 transition duration-500"
-			loading="lazy"
-			/>
-		</div>
-		<div class="p-5">
-			<h3 class="text-lg font-semibold">Consulenza alla persona</h3>
-			<p class="mt-2 text-sm text-slate-600">
-			Consulenze psicoterapeutiche per lo sviluppo creativo e integrato delle persone.
-			</p>
-		</div>
-		</a>
-	</div>
-	</section>
-
 </BaseLayout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+  .logo-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    opacity: var(--logo-opacity, 1);
+    pointer-events: var(--logo-splash-pe, auto);
+    transition: opacity 200ms ease;
+  }
+  .logo-splash__img {
+    width: min(92vw, 1500px);
+    height: auto;
+    transform: translateY(var(--logo-shift, 0px)) scale(var(--logo-scale, 1));
+    opacity: var(--logo-opacity, 1);
+    animation: logoFloatIn 1800ms ease both;
+    will-change: transform;
+  }
+  @keyframes logoFloatIn {
+    from {
+      transform: translateY(12px) scale(0.985);
+    }
+    to {
+      transform: translateY(var(--logo-shift, 0px)) scale(var(--logo-scale, 1));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-splash__img {
+      animation: none;
+      transform: none;
+      opacity: 1;
+    }
+    .logo-splash {
+      display: none;
+    }
+    .home-content {
+      opacity: 1;
+    }
+  }
+  .home-content {
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+  :global(.has-splash) .home-content {
+    opacity: var(--home-content-opacity, 0);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const splash = document.querySelector(".logo-splash");
+    if (!splash) return;
+
+    document.documentElement.classList.add("has-splash");
+
+    let progress = 0;
+    let ticking = false;
+    const clamp = (min, value, max) => Math.max(min, Math.min(value, max));
+
+    const update = () => {
+      ticking = false;
+      const scale = clamp(1, 1 + progress * 0.25, 1.25);
+      const opacity = clamp(0, 1 - progress * 1.1, 1);
+      const fadeStartOpacity = 0.1;
+      const contentOpacity = opacity > fadeStartOpacity
+        ? 0
+        : clamp(0, (fadeStartOpacity - opacity) / fadeStartOpacity, 1);
+      splash.style.setProperty("--logo-scale", scale.toFixed(3));
+      splash.style.setProperty("--logo-opacity", opacity.toFixed(3));
+      document.documentElement.style.setProperty(
+        "--home-content-opacity",
+        contentOpacity.toFixed(3),
+      );
+      const done = progress >= 1;
+      document.documentElement.classList.toggle("has-splash", !done);
+      splash.style.setProperty("--logo-splash-pe", done ? "none" : "auto");
+      document.body.style.overflow = done ? "" : "hidden";
+    };
+
+    const requestUpdate = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    const onWheel = (event) => {
+      const atTop = window.scrollY <= 0;
+      const direction = Math.sign(event.deltaY);
+      const shouldControl =
+        progress < 1 || (atTop && direction < 0);
+
+      if (!shouldControl) return;
+      event.preventDefault();
+      progress = clamp(0, progress + event.deltaY / 1000, 1);
+      requestUpdate();
+    };
+
+    let lastTouchY = null;
+    const onTouchMove = (event) => {
+      if (event.touches.length !== 1) return;
+      const touchY = event.touches[0].clientY;
+      if (lastTouchY !== null) {
+        const delta = lastTouchY - touchY;
+        const atTop = window.scrollY <= 0;
+        const shouldControl = progress < 1 || (atTop && delta < 0);
+        if (shouldControl) {
+          progress = clamp(0, progress + delta / 450, 1);
+          requestUpdate();
+          event.preventDefault();
+        }
+      }
+      lastTouchY = touchY;
+    };
+
+    const onKeyDown = (event) => {
+      const downKeys = ["ArrowDown", "PageDown", " "];
+      const upKeys = ["ArrowUp", "PageUp"];
+      if (![...downKeys, ...upKeys].includes(event.key)) return;
+      const atTop = window.scrollY <= 0;
+      const direction = downKeys.includes(event.key) ? 1 : -1;
+      const shouldControl = progress < 1 || (atTop && direction < 0);
+      if (!shouldControl) return;
+      event.preventDefault();
+      progress = clamp(0, progress + direction * 0.08, 1);
+      requestUpdate();
+    };
+
+    document.body.style.overflow = "hidden";
+    update();
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("keydown", onKeyDown);
+  })();
+</script>

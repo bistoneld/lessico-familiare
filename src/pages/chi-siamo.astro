@@ -66,19 +66,16 @@ const profileImg = `${base}images/pages/V_MG_9796.jpg`;
       </div>
     </div>
 
-    <div
-      class="mt-6 grid lg:grid-cols-2"
-      style="row-gap: 3rem; column-gap: 3rem;"
-    >
+    <div class="people-grid mt-6 grid">
       <article
         class="rounded-2xl border border-slate-200 shadow-sm"
         style="background: linear-gradient(180deg, rgba(235, 248, 240, 0.95), #fff 65%);"
       >
-        <div class="grid gap-6 md:grid-cols-[180px_1fr] p-6">
+        <div class="grid gap-6 p-6">
           <img
             src={profileImg}
             alt="Mariacristina Nutricato"
-            class="h-44 w-full rounded-2xl object-cover"
+            class="h-56 w-full rounded-2xl object-cover"
             loading="lazy"
             decoding="async"
           />
@@ -120,11 +117,11 @@ const profileImg = `${base}images/pages/V_MG_9796.jpg`;
         class="rounded-2xl border border-slate-200 shadow-sm"
         style="background: linear-gradient(180deg, rgba(230, 245, 237, 0.95), #fff 65%);"
       >
-        <div class="grid gap-6 md:grid-cols-[180px_1fr] p-6">
+        <div class="grid gap-6 p-6">
           <img
             src={profileImg}
             alt="Vittoria Marotta"
-            class="h-44 w-full rounded-2xl object-cover"
+            class="h-56 w-full rounded-2xl object-cover"
             loading="lazy"
             decoding="async"
           />
@@ -162,5 +159,10 @@ const profileImg = `${base}images/pages/V_MG_9796.jpg`;
 <style>
   :global(main) {
     padding-top: 0;
+  }
+  .people-grid {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+    column-gap: 3rem;
   }
 </style>
