@@ -262,12 +262,19 @@ const services = [
         const atTop = window.scrollY <= 0;
         const shouldControl = progress < 1 || (atTop && delta < 0);
         if (shouldControl) {
+<<<<<<< HEAD
           progress = clamp(0, progress + delta / 250, 1);
+=======
+          progress = clamp(0, progress + delta / 200, 1);
+>>>>>>> 55993fc (Update home splash scroll behavior)
           requestUpdate();
           event.preventDefault();
         }
       }
       lastTouchY = touchY;
+    };
+    const onTouchEnd = () => {
+      lastTouchY = null;
     };
 
     const onKeyDown = (event) => {
@@ -287,6 +294,8 @@ const services = [
     update();
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", onTouchEnd, { passive: true });
     window.addEventListener("keydown", onKeyDown);
   })();
 </script>
