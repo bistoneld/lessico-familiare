@@ -2,6 +2,8 @@
 import Layout from "../layouts/BlogPost.astro";
 import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
+import CTA from "../components/CTA.astro";
+import E_Cards from "../components/E_Cards.astro";
 
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Reti.png`;
@@ -92,83 +94,14 @@ const partnerGroups = [
       </p>
     </div>
 
-    <div class="mt-8 grid gap-6 md:grid-cols-2">
-      {
-        partnerGroups.map((group) => (
-          <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-            <div class="relative aspect-[16/6] overflow-hidden">
-              <img
-                src={group.image}
-                alt={group.title}
-                class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-              />
-              <div
-                class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
-                style={`background: linear-gradient(120deg, ${group.accent}cc, rgba(0,0,0,0.15));`}
-              ></div>
-              <div class="absolute inset-0 flex items-end p-4 sm:p-5">
-                <div class="text-white">
-                  <p class="text-xs font-semibold uppercase tracking-[0.2em] opacity-90">
-                    Categoria
-                  </p>
-                  <h4 class="text-xl font-semibold" style="color: var(--brand-soft);">
-                    {group.title}
-                  </h4>
-                </div>
-              </div>
-            </div>
-
-            <ul class="p-5 grid gap-3">
-              {group.items.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    class="flex items-center justify-between rounded-xl border border-slate-100 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900"
-                  >
-                    <span>{item.name}</span>
-                    <span class="text-xs text-slate-400">Partner</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            <div
-              class="pointer-events-none absolute inset-x-0 bottom-0 h-1 opacity-0 transition group-hover:opacity-100"
-              style={`background: ${group.accent};`}
-            ></div>
-          </div>
-        ))
-      }
-    </div>
+    <E_Cards groups={partnerGroups} />
   </section>
 
-  <section
-    class="mt-12 rounded-2xl p-8"
-    style="background: var(--brand-soft); box-shadow: var(--box-shadow);"
-  >
-    <div
-      class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
-    >
-      <div>
-        <h3 class="text-2xl font-semibold" style="color: var(--brand-dark);">
-          Proponi una collaborazione
-        </h3>
-        <p class="mt-2 text-sm" style="color: var(--muted);">
-          Se vuoi costruire un progetto condiviso, raccontaci il contesto e gli
-          obiettivi.
-        </p>
-      </div>
-      <a
-        href="/contatti"
-        class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
-        style="background: var(--brand);"
-      >
-        Scrivici
-      </a>
-    </div>
-  </section>
+  <CTA
+    title="Proponi una collaborazione"
+    text="Se vuoi costruire un progetto condiviso, raccontaci il contesto e gli obiettivi."
+    href={`${base}contatti`}
+  />
 </Layout>
 
 <style>

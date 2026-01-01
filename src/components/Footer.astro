@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL;
 				<p class="lf-footer__title">Contatti</p>
 				<a href="mailto:info@lessicofamiliare.it">info@lessicofamiliare.it</a>
 				<a href="tel:+390000000000">+39 000 000 0000</a>
-				<span>Milano e dintorni · online</span>
+				<span>Roma e Bari · online</span>
 			</div>
 			<div>
 				<p class="lf-footer__title">Link rapidi</p>
@@ -34,9 +34,24 @@ const base = import.meta.env.BASE_URL;
 			</div>
 			<div>
 				<p class="lf-footer__title">Social</p>
-				<a href="#" target="_blank">Instagram</a>
-				<a href="#" target="_blank">Facebook</a>
-				<a href="#" target="_blank">LinkedIn</a>
+				<div class="lf-footer__social">
+					<a href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
+						<img
+							src={`${base}images/logo/Social/ig.png`}
+							alt=""
+							class="lf-footer__social-icon"
+							loading="lazy"
+						/>
+					</a>
+					<a href="#" target="_blank" rel="noreferrer" aria-label="Facebook">
+						<img
+							src={`${base}images/logo/Social/fb.png`}
+							alt=""
+							class="lf-footer__social-icon"
+							loading="lazy"
+						/>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -103,6 +118,17 @@ const base = import.meta.env.BASE_URL;
 	}
 	.lf-footer__cols a:hover {
 		color: #fff;
+	}
+	.lf-footer__social {
+		display: grid;
+		gap: 0.5rem;
+		margin-top: 0.35rem;
+	}
+	.lf-footer__social-icon {
+		width: 22px;
+		height: 22px;
+		display: block;
+		filter: brightness(0) invert(1);
 	}
 	.lf-footer__title {
 		font-weight: 700;
