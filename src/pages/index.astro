@@ -205,7 +205,7 @@ const services = [
 
       if (!shouldControl) return;
       event.preventDefault();
-      progress = clamp(0, progress + event.deltaY / 1000, 1);
+      progress = clamp(0, progress + event.deltaY / 300, 1);
       requestUpdate();
     };
 
