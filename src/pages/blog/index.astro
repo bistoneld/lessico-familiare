@@ -9,6 +9,13 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
 const fallbackCover = `${base}images/pages/LF_Home.png`;
 
 const toDate = (value) => (value instanceof Date ? value : new Date(value));
+const resolveCover = (cover) => {
+  if (!cover) return fallbackCover;
+  if (cover.startsWith("/")) {
+    return `${base}${cover.replace(/^\//, "")}`;
+  }
+  return cover;
+};
 function getSlug(post) {
   return post.slug ?? post.id.replace(/\.(md|mdx)$/i, "");
 }
@@ -16,7 +23,11 @@ const accents = ["#6B8CC3", "#7A9B6D", "#C08A5A", "#8F7BC2", "#4C7BBF"];
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => toDate(b.data.date).valueOf() - toDate(a.data.date).valueOf());
+  .sort((a, b) => {
+    const dateA = toDate(a.data.date).valueOf();
+    const dateB = toDate(b.data.date).valueOf();
+    return dateB - dateA;
+  });
 ---
 
 <Layout title="Blog" description="Articoli e materiali di Lessico Familiare">
@@ -57,7 +68,7 @@ const posts = (await getCollection("blog"))
                   }`}
                 >
                   <img
-                    src={post.data.cover ?? fallbackCover}
+                    src={resolveCover(post.data.cover)}
                     alt={post.data.title}
                     class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"

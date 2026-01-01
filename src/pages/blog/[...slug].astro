@@ -6,6 +6,13 @@ import { getCollection, render } from "astro:content";
 
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Home2.png`;
+const resolveCover = (cover) => {
+  if (!cover) return "";
+  if (cover.startsWith("/")) {
+    return `${base}${cover.replace(/^\//, "")}`;
+  }
+  return cover;
+};
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog")).filter((post) => !post.data.draft);
@@ -59,7 +66,7 @@ const { Content } = await render(post);
       {post.data.cover && (
         <img
           class="mt-6 rounded-2xl border border-slate-200"
-          src={post.data.cover}
+          src={resolveCover(post.data.cover)}
           alt=""
         />
       )}

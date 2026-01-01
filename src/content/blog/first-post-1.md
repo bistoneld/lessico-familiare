@@ -1,17 +1,14 @@
 ---
 excerpt: "Un primo post per inaugurare il blog: poche righe per raccontare cosa
   troverete qui e come useremo questo spazio."
-heroImage: ../../assets/blog-placeholder-3.jpg
 draft: false
-pubDate: Jul 08 2022
-title: Test post pienino di robetta
-date: 2026-01-01
+title: "Test post pienino di robetta"
+date: "2026-01-01"
 cover: /images/blog/lf_prodotti.png
 tags:
   - famiglie
   - scuole
   - territori
-description: Lorem ipsum dolor sit amet
 ---
 
 Benvenuti nel blog di **Lessico Familiare**.

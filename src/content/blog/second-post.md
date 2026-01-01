@@ -1,7 +1,6 @@
 ---
 title: "Second post"
 excerpt: "Lorem ipsum dolor sit amet"
-cover: "../../assets/blog-placeholder-4.jpg"
 description: "Post finto di test per il blog."
 pubDate: 2022-09-15
 date: "2022-09-15"

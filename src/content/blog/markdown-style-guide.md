@@ -1,6 +1,5 @@
 ---
 excerpt: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
-cover: "../../assets/blog-placeholder-1.jpg"
 title: "Markdown Guide"
 description: "Post finto di test per il blog."
 pubDate: 2021-07-15
