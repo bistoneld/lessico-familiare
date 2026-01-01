@@ -4,7 +4,7 @@ excerpt: "Un primo post per inaugurare il blog: poche righe per raccontare cosa
 heroImage: ../../assets/blog-placeholder-3.jpg
 draft: false
 pubDate: Jul 08 2022
-title: First post
+title: Test post pienino di robetta
 date: 2026-01-01
 cover: /images/blog/lf_prodotti.png
 tags:
