@@ -2,7 +2,7 @@
 excerpt: "Un primo post per inaugurare il blog: poche righe per raccontare cosa
   troverete qui e come useremo questo spazio."
 heroImage: ../../assets/blog-placeholder-3.jpg
-draft: true
+draft: false
 pubDate: Jul 08 2022
 title: First post
 date: 2026-01-01
@@ -13,6 +13,10 @@ tags:
   - territori
 description: Lorem ipsum dolor sit amet
 ---
+
+
+![lf](/images/blog/lf_logo-completo.png "lessFam")
+
 Benvenuti nel blog di **Lessico Familiare**.
 
 Questo spazio nasce per raccogliere parole, scene quotidiane e piccoli appunti di lavoro: non “ricette” da applicare, ma modi per guardare più da vicino quello che succede nei contesti in cui viviamo — in famiglia, a scuola, nei territori, nelle organizzazioni.
