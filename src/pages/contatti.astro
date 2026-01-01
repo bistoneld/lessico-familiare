@@ -1,0 +1,241 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout title="Contatti" description="Contatta Lessico Familiare">
+  <Hero
+    eyebrow=" "
+    title="Contatti"
+    subtitle="Scrivici per informazioni e per costruire insieme il percorso giusto."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Invia una richiesta", href: "#richiesta" }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="CONTATTI" />
+  </section>
+
+  <section class="mt-10" id="richiesta">
+    <div class="max-w-3xl">
+      <h2 class="text-2xl font-semibold" style="color: var(--brand-dark);">
+        Scrivici
+      </h2>
+      <p class="mt-3 text-slate-600">
+        Raccontaci il contesto e cosa stai cercando. Ti rispondiamo appena
+        possibile.
+      </p>
+      <div class="mt-6 text-sm text-slate-600">
+        <p class="font-semibold" style="color: var(--brand-dark);">
+          Email
+        </p>
+        <a href="mailto:info@lessicofamiliare.it">info@lessicofamiliare.it</a>
+        <p class="mt-4 font-semibold" style="color: var(--brand-dark);">
+          Telefono
+        </p>
+        <a href="tel:+390000000000">+39 000 000 0000</a>
+        <p class="mt-4 font-semibold" style="color: var(--brand-dark);">
+          Sedi
+        </p>
+        <p>Roma e Bari · online</p>
+      </div>
+
+      <form
+        class="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+        method="POST"
+        action={`${base}contatti-grazie/`}
+        id="contact-form"
+        name="contatti"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="contatti" />
+        <label class="sr-only">
+          Non compilare
+          <input name="bot-field" tabindex="-1" autocomplete="off" />
+        </label>
+        <div class="grid gap-4">
+          <label class="grid gap-2 text-sm font-semibold text-slate-700">
+            La tua email*
+            <input
+              type="email"
+              name="email"
+              required
+              pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+              class="rounded-xl border border-slate-200 px-3 py-2 text-sm"
+              placeholder="nome@email.it"
+            />
+            <span
+              class="text-xs text-slate-500"
+              data-error-for="email"
+              aria-live="polite"
+            ></span>
+          </label>
+
+          <label class="grid gap-2 text-sm font-semibold text-slate-700">
+            Oggetto della richiesta*
+            <input
+              type="text"
+              name="title"
+              required
+              class="rounded-xl border border-slate-200 px-3 py-2 text-sm"
+              placeholder="Oggetto della richiesta"
+            />
+            <span
+              class="text-xs text-slate-500"
+              data-error-for="title"
+              aria-live="polite"
+            ></span>
+          </label>
+
+          <label class="grid gap-2 text-sm font-semibold text-slate-700">
+            Testo della richiesta*
+            <textarea
+              name="message"
+              required
+              rows="6"
+              class="rounded-xl border border-slate-200 px-3 py-2 text-sm"
+              placeholder="Scrivi qui il tuo messaggio"
+            ></textarea>
+            <span
+              class="text-xs text-slate-500"
+              data-error-for="message"
+              aria-live="polite"
+            ></span>
+          </label>
+
+          <label class="grid gap-2 text-sm font-semibold text-slate-700">
+            Chiedi info per
+            <select
+              name="area"
+              class="rounded-xl border border-slate-200 px-3 py-2 text-sm"
+            >
+              <option value="">Seleziona (opzionale)</option>
+              <option value="roma">Roma</option>
+              <option value="bari">Bari</option>
+              <option value="online">Online</option>
+              <option value="altro">Altro</option>
+            </select>
+          </label>
+        </div>
+
+        <p class="mt-3 text-xs text-slate-500" id="form-error" aria-live="polite"></p>
+
+        <button
+          type="submit"
+          class="mt-5 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
+        >
+          Invia richiesta
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const errorEl = document.getElementById("form-error");
+    const blockedDomains = [
+      "testblack.com",
+    ];
+
+    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/i;
+
+    const fieldErrors = {
+      email: form.querySelector('[data-error-for="email"]'),
+      title: form.querySelector('[data-error-for="title"]'),
+      message: form.querySelector('[data-error-for="message"]'),
+    };
+
+    const setError = (message) => {
+      if (errorEl) errorEl.textContent = message;
+    };
+
+    const setFieldError = (field, message) => {
+      const target = fieldErrors[field];
+      if (target) target.textContent = message;
+    };
+
+    const validate = () => {
+      const emailInput = form.querySelector('input[name="email"]');
+      const titleInput = form.querySelector('input[name="title"]');
+      const messageInput = form.querySelector('textarea[name="message"]');
+
+      if (!emailInput || !titleInput || !messageInput) return false;
+
+      const emailValue = emailInput.value.trim().toLowerCase();
+      const titleValue = titleInput.value.trim();
+      const messageValue = messageInput.value.trim();
+
+      console.log("contatti: email value", emailValue);
+      console.log("contatti: title length", titleValue.length);
+      console.log("contatti: message length", messageValue.length);
+
+      setFieldError("email", "");
+      setFieldError("title", "");
+      setFieldError("message", "");
+
+      if (!emailValue || !titleValue || !messageValue) {
+        setError("Compila tutti i campi obbligatori.");
+        if (!emailValue) setFieldError("email", "Email obbligatoria.");
+        if (!titleValue) setFieldError("title", "Titolo obbligatorio.");
+        if (!messageValue) setFieldError("message", "Richiesta obbligatoria.");
+        console.log("contatti: missing required fields");
+        return false;
+      }
+
+      const emailMatch = emailRegex.test(emailValue);
+      console.log("contatti: email regex match", emailMatch);
+      if (!emailMatch) {
+        setError("Inserisci un'email valida.");
+        setFieldError("email", "Formato email non valido.");
+        return false;
+      }
+
+      const domain = emailValue.split("@")[1] || "";
+      console.log("contatti: email domain", domain);
+      const isBlocked = blockedDomains.some((blocked) =>
+        domain.endsWith(blocked),
+      );
+      console.log("contatti: email blocked", isBlocked, blockedDomains);
+
+      if (isBlocked) {
+        setError("Inserisci un'email valida.");
+        setFieldError("email", "Email non valida.");
+        return false;
+      }
+
+      setError("");
+      return true;
+    };
+
+    form.addEventListener("submit", (event) => {
+      console.log("contatti: submit click");
+      event.preventDefault();
+      if (!validate()) {
+        console.log("contatti: form invalid");
+      } else {
+        console.log("contatti: form ok");
+        form.submit();
+      }
+    });
+  })();
+</script>

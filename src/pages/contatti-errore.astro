@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout title="Ops" description="Invio non riuscito">
+  <Hero
+    eyebrow=" "
+    title="Ops"
+    subtitle="Qualcosa non ha funzionato. Puoi riprovare o contattarci direttamente."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Riprova", href: `${base}contatti` }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="QUALCOSA E ANDATO STORTO" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Se il problema persiste, puoi scriverci a
+        <a href="mailto:info@lessicofamiliare.it"> info@lessicofamiliare.it</a>
+        oppure chiamare <a href="tel:+390000000000">+39 000 000 0000</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

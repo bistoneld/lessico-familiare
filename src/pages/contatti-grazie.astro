@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout title="Grazie" description="Messaggio inviato">
+  <Hero
+    eyebrow=" "
+    title="Grazie"
+    subtitle="Abbiamo ricevuto la tua richiesta."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    cta={{ label: "Torna alla home", href: `${base}` }}
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="RICHIESTA INVIATA" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        Ti risponderemo appena possibile.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>
