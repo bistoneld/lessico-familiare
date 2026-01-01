@@ -262,11 +262,7 @@ const services = [
         const atTop = window.scrollY <= 0;
         const shouldControl = progress < 1 || (atTop && delta < 0);
         if (shouldControl) {
-<<<<<<< HEAD
-          progress = clamp(0, progress + delta / 250, 1);
-=======
           progress = clamp(0, progress + delta / 200, 1);
->>>>>>> 55993fc (Update home splash scroll behavior)
           requestUpdate();
           event.preventDefault();
         }
