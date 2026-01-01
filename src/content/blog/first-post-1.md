@@ -14,10 +14,9 @@ tags:
 description: Lorem ipsum dolor sit amet
 ---
 
+Benvenuti nel blog di **Lessico Familiare**.
 
 ![lf](/images/blog/lf_logo-completo.png "lessFam")
-
-Benvenuti nel blog di **Lessico Familiare**.
 
 Questo spazio nasce per raccogliere parole, scene quotidiane e piccoli appunti di lavoro: non “ricette” da applicare, ma modi per guardare più da vicino quello che succede nei contesti in cui viviamo — in famiglia, a scuola, nei territori, nelle organizzazioni.
 
