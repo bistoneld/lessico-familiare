@@ -1,114 +1,146 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import Layout from "../../layouts/BlogPost.astro";
+import BannerStrip from "../../components/BannerStrip.astro";
+import Hero from "../../components/Hero.astro";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+const fallbackCover = `${base}images/pages/LF_Home.png`;
+
+const toDate = (value) => (value instanceof Date ? value : new Date(value));
+function getSlug(post) {
+  return post.slug ?? post.id.replace(/\.(md|mdx)$/i, "");
+}
+const accents = ["#6B8CC3", "#7A9B6D", "#C08A5A", "#8F7BC2", "#4C7BBF"];
+
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => toDate(b.data.date).valueOf() - toDate(a.data.date).valueOf());
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title="Blog" description="Articoli e materiali di Lessico Familiare">
+  <Hero
+    eyebrow=" "
+    title="Blog"
+    subtitle="Articoli, materiali e tracce di lavoro."
+    image={heroImg}
+    imageAlt="Dettaglio di uno spazio di lavoro"
+    align="left"
+    size="md"
+  />
+
+  <section>
+    <BannerStrip title="BLOG" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <ul class="grid gap-6 md:grid-cols-2" data-blog-list>
+        {posts.map((post, index) => {
+          const accent = accents[index % accents.length];
+          const isFeatured = index === 0;
+          const slug = getSlug(post);
+          return (
+            <li
+              class={`blog-card ${isFeatured ? "md:col-span-2" : ""}`}
+              data-blog-item
+              data-index={index}
+            >
+              <a
+                href={`${base}blog/${slug}/`}
+                class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <div
+                  class={`relative overflow-hidden bg-slate-100 ${
+                    isFeatured ? "aspect-[16/9]" : "aspect-square"
+                  }`}
+                >
+                  <img
+                    src={post.data.cover ?? fallbackCover}
+                    alt={post.data.title}
+                    class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
+                    style={`background: linear-gradient(120deg, ${accent}cc, rgba(0,0,0,0.15));`}
+                  ></div>
+                </div>
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">{post.data.title}</h3>
+                  {post.data.excerpt && (
+                    <p class="mt-2 text-sm text-slate-600">
+                      {post.data.excerpt}
+                    </p>
+                  )}
+                  <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
+                    <span>{toDate(post.data.date).toLocaleDateString("it-IT")}</span>
+                    {post.data.tags?.map((tag) => (
+                      <span class="rounded-full border border-slate-200 px-2 py-0.5">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div
+                  class="pointer-events-none absolute inset-x-0 bottom-0 h-1 opacity-0 transition group-hover:opacity-100"
+                  style={`background: ${accent};`}
+                ></div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <div class="mt-8 flex justify-center">
+        <button
+          type="button"
+          class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 hover:border-slate-400 hover:text-slate-900 transition"
+          data-blog-load
+        >
+          Carica altri
+        </button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+
+  .blog-card.is-hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  (() => {
+    const list = document.querySelector("[data-blog-list]");
+    const button = document.querySelector("[data-blog-load]");
+    if (!list || !button) return;
+
+    const items = Array.from(list.querySelectorAll("[data-blog-item]"));
+    const initialCount = 11;
+    const batchSize = 10;
+    let visibleCount = initialCount;
+
+    const update = () => {
+      items.forEach((item, index) => {
+        item.classList.toggle("is-hidden", index >= visibleCount);
+      });
+      if (visibleCount >= items.length) {
+        button.setAttribute("hidden", "hidden");
+      }
+    };
+
+    update();
+
+    button.addEventListener("click", () => {
+      visibleCount += batchSize;
+      update();
+    });
+  })();
+</script>

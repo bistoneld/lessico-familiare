@@ -75,7 +75,7 @@ const { title, description, image = FallbackImage } = Astro.props;
     const allowed =
       host.endsWith("netlify.app") || host === "lessicofamiliare.it";
     if (!allowed) return;
-    const base = "${base}";
+    const base = {JSON.stringify(base)};
     window.location.href = `${base}admin/${hash}`;
   })();
 </script>
