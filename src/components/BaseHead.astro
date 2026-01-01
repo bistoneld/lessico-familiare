@@ -60,3 +60,22 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<script is:inline>
+  (() => {
+    const hash = window.location.hash || "";
+    if (!hash) return;
+    const hasToken =
+      hash.includes("invite_token=") ||
+      hash.includes("recovery_token=") ||
+      hash.includes("confirmation_token=");
+    if (!hasToken) return;
+    if (window.location.pathname.includes("/admin")) return;
+    const host = window.location.hostname;
+    const allowed =
+      host.endsWith("netlify.app") || host === "lessicofamiliare.it";
+    if (!allowed) return;
+    const base = "${base}";
+    window.location.href = `${base}admin/${hash}`;
+  })();
+</script>
