@@ -8,18 +8,18 @@
 /* Brand tokens (palette) */
 :root {
   /* 🎯 BRAND */
-  --brand: #7158b6;        /* viola identitario */
-  --brand-dark: #423366;  /* titoli / header */
-  --brand-soft: #b7a4eb;  /* sfondi narrativi */
+  --brand: #697dc7;        /* viola identitario */
+  --brand-dark: #34416b;  /* titoli / header */
+  --brand-soft: #99abeb;  /* sfondi narrativi */
   /*--accent: #F27B35;*/
 
   /* 📝 TESTI */
   --text: #1f1f33;        /* quasi nero, caldo */
-  --muted: #5e5e7a;       /* testo secondario */
+  --muted: #47475c;       /* testo secondario */
 
   /* 🧱 SFONDI */
   --bg: #ffffff;
-  --bg-soft: #f7f6fb;     /* bianco violaceo */
+  --bg-soft: #edeafa;     /* bianco violaceo */
 
   /* ⚙️ NEUTRI */
   --black: 31, 31, 51;

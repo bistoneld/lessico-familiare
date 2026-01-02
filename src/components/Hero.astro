@@ -75,6 +75,10 @@ const {
 const Tag = as;
 const imgSrc = typeof image === "string" ? image : image?.src;
 const fullBleedClass = fullBleed ? "full-bleed" : "";
+const basePath = import.meta.env.BASE_URL;
+const imageMatch = imgSrc?.match(/([^/]+)\.(png|jpe?g|webp|avif)$/i);
+const optName = imageMatch?.[1];
+const optBase = optName ? `${basePath}images/opt/${optName}` : null;
 ---
 
 <Tag
@@ -83,14 +87,37 @@ const fullBleedClass = fullBleed ? "full-bleed" : "";
   style={`--lf-hero-overlay:${overlay};`}
 >
   <!-- Media -->
-  <img
-    class="lf-hero__img"
-    src={imgSrc}
-    alt={imageAlt}
-    loading="eager"
-    decoding="async"
-    fetchpriority="high"
-  />
+  {optBase ? (
+    <picture class="lf-hero__media">
+      <source
+        type="image/avif"
+        srcset={`${optBase}-640.avif 640w, ${optBase}-1280.avif 1280w, ${optBase}-1920.avif 1920w`}
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset={`${optBase}-640.webp 640w, ${optBase}-1280.webp 1280w, ${optBase}-1920.webp 1920w`}
+        sizes="100vw"
+      />
+      <img
+        class="lf-hero__img"
+        src={imgSrc}
+        alt={imageAlt}
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+  ) : (
+    <img
+      class="lf-hero__img"
+      src={imgSrc}
+      alt={imageAlt}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+  )}
 
   <!-- Scrim (scurisce + sfuma) -->
   <div class="lf-hero__scrim" aria-hidden="true"></div>
@@ -165,6 +192,11 @@ const fullBleedClass = fullBleed ? "full-bleed" : "";
     object-fit: cover;
     object-position: center 35%;
     transform: translateY(var(--lf-hero-shift, 0px)) scale(1.05);
+  }
+
+  .lf-hero__media {
+    position: absolute;
+    inset: 0;
   }
 
   .lf-hero__scrim {

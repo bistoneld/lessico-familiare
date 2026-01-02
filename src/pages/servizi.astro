@@ -3,6 +3,7 @@ import Layout from "../layouts/BlogPost.astro";
 import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
 import Cards from "../components/Cards.astro";
+import CTA from "../components/CTA.astro";
 
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Home.png`;
@@ -85,7 +86,15 @@ const services = [
     </div>
 
     <Cards items={services} />
+      
+  <CTA
+    title="Portaci la tua domanda"
+    text="Se hai richieste diverse o cerchi informazioni, scrivici."
+    href={`${base}contatti`}
+  />
+  
   </section>
+
 </Layout>
 
 <style>

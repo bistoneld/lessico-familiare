@@ -6,6 +6,7 @@ import Hero from "../components/Hero.astro";
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Home2.png`;
 const profileImg = `${base}images/pages/V_MG_9796.jpg`;
+const profileOptBase = `${base}images/opt/V_MG_9796`;
 ---
 
 <Layout
@@ -69,16 +70,28 @@ const profileImg = `${base}images/pages/V_MG_9796.jpg`;
     <div class="people-grid mt-6 grid">
       <article
         class="rounded-2xl border border-slate-200 shadow-sm"
-        style="background: linear-gradient(180deg, rgba(235, 248, 240, 0.95), #fff 65%);"
+        style="background: linear-gradient(180deg, rgba(230, 230, 245, 0.95), #fff 65%);"
       >
         <div class="grid gap-6 p-6">
-          <img
-            src={profileImg}
-            alt="Mariacristina Nutricato"
-            class="h-56 w-full rounded-2xl object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source
+              type="image/avif"
+              srcset={`${profileOptBase}-640.avif 640w, ${profileOptBase}-1280.avif 1280w`}
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcset={`${profileOptBase}-640.webp 640w, ${profileOptBase}-1280.webp 1280w`}
+              sizes="100vw"
+            />
+            <img
+              src={profileImg}
+              alt="Mariacristina Nutricato"
+              class="h-56 w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div>
             <h4 class="text-xl font-semibold" style="color: var(--brand-dark);">
               Mariacristina Nutricato
@@ -115,16 +128,28 @@ const profileImg = `${base}images/pages/V_MG_9796.jpg`;
 
       <article
         class="rounded-2xl border border-slate-200 shadow-sm"
-        style="background: linear-gradient(180deg, rgba(230, 245, 237, 0.95), #fff 65%);"
+        style="background: linear-gradient(180deg, rgba(230, 230, 245, 0.95), #fff 65%);"
       >
         <div class="grid gap-6 p-6">
-          <img
-            src={profileImg}
-            alt="Vittoria Marotta"
-            class="h-56 w-full rounded-2xl object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source
+              type="image/avif"
+              srcset={`${profileOptBase}-640.avif 640w, ${profileOptBase}-1280.avif 1280w`}
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcset={`${profileOptBase}-640.webp 640w, ${profileOptBase}-1280.webp 1280w`}
+              sizes="100vw"
+            />
+            <img
+              src={profileImg}
+              alt="Vittoria Marotta"
+              class="h-56 w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <div>
             <h4 class="text-xl font-semibold" style="color: var(--brand-dark);">
               Vittoria Marotta

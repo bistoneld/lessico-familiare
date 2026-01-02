@@ -42,7 +42,7 @@ const posts = (await getCollection("blog"))
   />
 
   <section>
-    <BannerStrip title="BLOG" />
+    <BannerStrip title="SCOPRI TUTTI GLI ARTICOLI" />
   </section>
 
   <section class="mt-10">
@@ -62,16 +62,13 @@ const posts = (await getCollection("blog"))
                 href={`${base}blog/${slug}/`}
                 class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div
-                  class={`relative overflow-hidden bg-slate-100 ${
-                    isFeatured ? "aspect-[16/9]" : "aspect-square"
-                  }`}
-                >
+                <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
                   <img
                     src={resolveCover(post.data.cover)}
                     alt={post.data.title}
                     class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     loading="lazy"
+                    style="color: var(--brand-dark)"
                     decoding="async"
                   />
                   <div
@@ -80,9 +77,9 @@ const posts = (await getCollection("blog"))
                   ></div>
                 </div>
                 <div class="p-5">
-                  <h3 class="text-lg font-semibold">{post.data.title}</h3>
+                  <h3 class="text-lg font-semibold" style="color: var(--brand-dark)">{post.data.title}</h3>
                   {post.data.excerpt && (
-                    <p class="mt-2 text-sm text-slate-600">
+                    <p class="mt-2 text-sm text-slate-600" style="color: var(--brand-dark)">
                       {post.data.excerpt}
                     </p>
                   )}
