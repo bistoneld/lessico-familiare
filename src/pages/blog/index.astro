@@ -7,6 +7,7 @@ import { getCollection } from "astro:content";
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Home2.png`;
 const fallbackCover = `${base}images/pages/LF_Home.png`;
+const USE_NETLIFY_IMAGES = import.meta.env.PUBLIC_USE_NETLIFY_IMAGES === "true";
 
 const toDate = (value) => (value instanceof Date ? value : new Date(value));
 const resolveCover = (cover) => {
@@ -15,6 +16,22 @@ const resolveCover = (cover) => {
     return `${base}${cover.replace(/^\//, "")}`;
   }
   return cover;
+};
+const toRootPath = (url) => {
+  if (!url) return "";
+  if (url.startsWith("http")) return url;
+  if (url.startsWith("/")) return url;
+  if (url.startsWith(base)) return "/" + url.slice(base.length);
+  return "/" + url.replace(/^\//, "");
+};
+const netlifyImg = (url, { w, q = 75 } = {}) => {
+  const rootUrl = toRootPath(url);
+  if (!USE_NETLIFY_IMAGES) return rootUrl;
+  const params = new URLSearchParams();
+  params.set("url", rootUrl);
+  if (w) params.set("w", String(w));
+  params.set("q", String(q));
+  return `/.netlify/images?${params.toString()}`;
 };
 function getSlug(post) {
   return post.slug ?? post.id.replace(/\.(md|mdx)$/i, "");
@@ -63,14 +80,33 @@ const posts = (await getCollection("blog"))
                 class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
-                  <img
-                    src={resolveCover(post.data.cover)}
-                    alt={post.data.title}
-                    class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                    loading="lazy"
-                    style="color: var(--brand-dark)"
-                    decoding="async"
-                  />
+                  {(() => {
+                    const cover = resolveCover(post.data.cover);
+                    const img640 = netlifyImg(cover, { w: 640 });
+                    const img1280 = netlifyImg(cover, { w: 1280 });
+                    return (
+                      <picture>
+                        <source
+                          type="image/avif"
+                          srcset={`${img640} 640w, ${img1280} 1280w`}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        <source
+                          type="image/webp"
+                          srcset={`${img640} 640w, ${img1280} 1280w`}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        <img
+                          src={img1280}
+                          alt={post.data.title}
+                          class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                          loading="lazy"
+                          style="color: var(--brand-dark)"
+                          decoding="async"
+                        />
+                      </picture>
+                    );
+                  })()}
                   <div
                     class="absolute inset-0 opacity-80 transition group-hover:opacity-90"
                     style={`background: linear-gradient(120deg, ${accent}cc, rgba(0,0,0,0.15));`}
