@@ -5,7 +5,7 @@ excerpt: >
   Attraverso l'albo "Vorrei dirti", raccontiamo un lavoro con una famiglia in
   cui gli stereotipi lasciano spazio a un lessico nuovo, capace di dare nome
   alle emozioni e di immaginare modi diversi di stare insieme.
-cover: /images/blog/vorrei-dirti.jpg
+cover: /images/blog/vorrei_dirti.jpg
 tags:
   - parole
   - albi illustrati
