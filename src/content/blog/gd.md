@@ -1,5 +1,5 @@
 ---
-title: "RUBRICA: “A CONOSCERE LE STORIE”"
+title: "Rubrica: “A CONOSCERE LE STORIE”"
 date: 2024-02-24
 excerpt: “A conoscere le storie” è una rubrica mensile che intreccia interventi
   psicologici con bambini, giovani e famiglie e le storie degli albi illustrati.
