@@ -1,6 +1,6 @@
 ---
 title: "RUBRICA: “A CONOSCERE LE STORIE”"
-date: 2026-01-03
+date: 2024-02-24
 excerpt: “A conoscere le storie” è una rubrica mensile che intreccia interventi
   psicologici con bambini, giovani e famiglie e le storie degli albi illustrati.
   Un modo per condividere riflessioni su crescita, apprendimento e
@@ -12,17 +12,12 @@ tags:
   - psicoterapia dell’età evolutiva
   - consulenza genitoriale
 ---
+**“A conoscere le storie”** è una rubrica che intreccia interventi psicologici con bambini, giovani e famiglie e il mondo degli **albi illustrati**.
 
-*“A conoscere le storie”* è una rubrica che parla di interventi psicologici con bambini, giovani e le loro famiglie e di albi illustrati.
+Nel nostro lavoro incontriamo questioni molto contemporanee legate ai processi di **apprendimento**, **socializzazione** e **crescita**: temi che prendono forma nei contesti di vita quotidiana — la scuola, le associazioni culturali o sportive, le famiglie, i luoghi informali di incontro.
 
-Attraverso il nostro studio, incontriamo alcune delle questioni contemporanee relative ai processi di apprendimento, di socializzazione e di crescita di bambini e giovani, che si sviluppano in contesti come la scuola, le associazioni culturali o sportive, le famiglie e i luoghi informali di aggregazione sociale. 
+Ci piacerebbe condividere ciò che osserviamo e attraversiamo, **mettendolo in dialogo con le storie**. Gli albi illustrati, parte della letteratura per l’infanzia e l’adolescenza, negli ultimi anni sono diventati per noi uno strumento prezioso: aiutano a leggere più da vicino situazioni e vissuti, offrendo parole e immagini capaci di parlare insieme a grandi e piccoli.
 
-Ci piacerebbe condividere quanto incontriamo mettendolo in comunicazione con le storie degli albi illustrati. 
+Li sentiamo come **voci curiose**: raccontano i rapporti sociali in cui siamo implicati, e spesso aprono spiragli inattesi per nominare emozioni, conflitti, desideri.
 
-Questi sono libri che fanno parte della letteratura per l’infanzia e l’adolescenza, negli ultimi anni ci siamo molto appassionate a questo genere letterario ed è diventato un importante strumento di lavoro che ci aiuta a comprendere meglio situazioni e vissuti.
-
-Leggendoli, ci sembrano delle voci curiose che si rivolgono trasversalmente a grandi e piccoli, attraverso parole e immagini che emozionano entrambi, raccontando dei rapporti sociali in cui siamo implicati. 
-
-Pubblicheremo un articolo al mese e sceglieremo per ogni articolo un albo illustrato che ci farà da guida rispetto al tema di cui vogliamo parlare. 
-
-L’idea è di poter aprire degli spunti di riflessione sul mondo della crescita e della formazione, per capire di più delle dinamiche emozionali e sociali che li attraversano.
+Pubblicheremo **un articolo al mese**: ogni volta sceglieremo un albo illustrato che farà da guida al tema che vogliamo esplorare. L’idea è aprire spunti di riflessione sul mondo della crescita e della formazione, per comprendere meglio le **dinamiche emozionali e sociali** che lo attraversano.
