@@ -218,7 +218,7 @@ const services = [
         const atTop = window.scrollY <= 0;
         const shouldControl = progress < 1 || (atTop && delta < 0);
         if (shouldControl) {
-          progress = clamp(0, progress + delta / 200, 1);
+          progress = clamp(0, progress + delta / 160, 1);
           requestUpdate();
           event.preventDefault();
         }

@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+publish_mode: editorial_workflow
+
 media_folder: "public/images/blog"
 public_folder: "/images/blog"
 
@@ -11,11 +13,11 @@ collections:
     folder: "src/content/blog"
     create: true
     slug: "{{slug}}"
+    summary: "{{date}} — {{title}}"
     fields:
       - { label: "Titolo", name: "title", widget: "string" }
       - { label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Estratto", name: "excerpt", widget: "text", required: false }
       - { label: "Copertina", name: "cover", widget: "image", required: false }
       - { label: "Tag", name: "tags", widget: "list", required: false }
-      - { label: "Bozza", name: "draft", widget: "boolean", default: false, required: false }
       - { label: "Testo", name: "body", widget: "markdown" }
