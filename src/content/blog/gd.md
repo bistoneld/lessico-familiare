@@ -1,9 +1,10 @@
 ---
 title: "Rubrica: “A CONOSCERE LE STORIE”"
-date: 2024-02-24
+date: 2024-01-30
 excerpt: “A conoscere le storie” è una rubrica mensile che intreccia interventi
   psicologici e albi illustrati, per riflettere su crescita, apprendimento e
   socializzazione nei contesti di vita.
+cover: /images/blog/a_conoscere_le_storie.png
 tags:
   - albi illustrati
   - crescita
