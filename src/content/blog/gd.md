@@ -5,6 +5,12 @@ excerpt: “A conoscere le storie” è una rubrica mensile che intreccia interv
   psicologici con bambini, giovani e famiglie e le storie degli albi illustrati.
   Un modo per condividere riflessioni su crescita, apprendimento e
   socializzazione nei diversi contesti di vita.
+tags:
+  - albi illustrati
+  - crescita
+  - scuola
+  - psicoterapia dell’età evolutiva
+  - consulenza genitoriale
 ---
 
 *“A conoscere le storie”* è una rubrica che parla di interventi psicologici con bambini, giovani e le loro famiglie e di albi illustrati.
