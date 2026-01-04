@@ -14,7 +14,7 @@
   /*--accent: #F27B35;*/
 
   /* 📝 TESTI */
-  --text: #1f1f33;        /* quasi nero, caldo */
+  --text: rgb(71, 85, 105);        /* quasi nero, caldo */
   --muted: #47475c;       /* testo secondario */
 
   /* 🧱 SFONDI */

@@ -21,7 +21,7 @@ const heroFallbacks = [
 ];
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("blog")).filter((post) => !post.data.draft);
+  const posts = await getCollection("blog");
   return posts.map((post) => ({
     params: {
       slug: post.slug ?? post.id.replace(/\.(md|mdx)$/i, ""),
@@ -36,12 +36,12 @@ const post = (await getCollection("blog")).find(
   (entry) =>
     (entry.slug ?? entry.id.replace(/\.(md|mdx)$/i, "")) === slug,
 );
-if (!post || post.data.draft) {
+if (!post) {
   throw new Error("Not found");
 }
 
 const { Content } = await render(post);
-const allPosts = (await getCollection("blog")).filter((entry) => !entry.data.draft);
+const allPosts = await getCollection("blog");
 const getSlug = (entry) => entry.slug ?? entry.id.replace(/\.(md|mdx)$/i, "");
 const related = allPosts
   .filter((entry) => entry !== post)
@@ -66,12 +66,12 @@ const heroImage =
       />
       <div class="blog-hero__scrim" aria-hidden="true"></div>
       <div class="blog-hero__title">
-        <p class="blog-hero__crumb">
+        <!-- <p class="blog-hero__crumb">
           <a href={`${base}blog/`} class="blog-hero__crumb-link">
             Blog
           </a>{" "}
           / {post.data.title}
-        </p>
+        </p>-->
         <h1 class="blog-hero__heading">{post.data.title}</h1>
       </div>
     </div>
@@ -98,16 +98,6 @@ const heroImage =
       <article class="prose mt-8">
         <Content />
       </article>
-
-      <div class="mt-12 flex justify-center">
-        <a
-          href={`${base}blog/`}
-          class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
-          style="background: var(--brand);"
-        >
-          Torna agli articoli
-        </a>
-      </div>
     </div>
   </section>
 
@@ -115,7 +105,7 @@ const heroImage =
     <section class="mt-16">
       <div class="max-w-5xl">
         <h3 class="text-2xl md:text-3xl font-semibold" style="color: var(--brand-dark);">
-          Articoli correlati
+          Articoli recenti
         </h3>
         <div class="mt-6 grid gap-5 md:grid-cols-3">
           {related.map((entry) => (
@@ -136,15 +126,28 @@ const heroImage =
                 <p class="text-xs uppercase tracking-[0.14em] text-slate-400">
                   {toDate(entry.data.date).toLocaleDateString("it-IT")}
                 </p>
-                <h4 class="mt-2 text-base font-semibold text-slate-800">
+                <h5
+                  class="mt-2 text-base font-semibold"
+                  style="color: var(--text);"
+                >
                   {entry.data.title}
-                </h4>
+                </h5>
               </div>
             </a>
           ))}
         </div>
       </div>
     </section>
+    
+      <div class="mt-12 flex justify-center">
+        <a
+          href={`${base}blog/`}
+          class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
+        >
+          Torna agli articoli
+        </a>
+      </div>
   )}
 </Layout>
 
@@ -175,7 +178,7 @@ const heroImage =
   .blog-hero__scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 40%, rgba(0, 0, 0, 0.6) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 60%, rgba(0, 0, 0, 0.7) 100%);
   }
 
   .blog-hero__title {
@@ -208,7 +211,7 @@ const heroImage =
   }
 
   .blog-hero__heading {
-    color: #fff;
+    color: var(--bg-soft);
     font-weight: 700;
     letter-spacing: -0.02em;
     font-size: clamp(2rem, 5vw, 3.2rem);
@@ -219,7 +222,7 @@ const heroImage =
 
   .prose :global(p) {
     margin: 1rem 0;
-    color: rgb(71 85 105);
+    color: var(--text);
     line-height: 1.8;
   }
   .prose :global(h3) {
@@ -228,7 +231,7 @@ const heroImage =
     font-weight: 700;
     color: var(--brand-dark);
   }
-  .prose :global(h4) {
+  .prose :global(h5) {
     margin-top: 1.5rem;
     font-size: 1.2rem;
     font-weight: 700;
