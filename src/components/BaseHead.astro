@@ -64,36 +64,83 @@ const { title, description, image = FallbackImage } = Astro.props;
 <!-- Netlify Identity widget: caricato solo quando serve (invite/recovery/confirmation) -->
 <script is:inline>
   (() => {
-    const hash = window.location.hash || "";
-    const hasToken =
-      hash.includes("invite_token=") ||
-      hash.includes("recovery_token=") ||
-      hash.includes("confirmation_token=");
+    try {
+      console.log("[Identity] head script loaded");
+      console.log("[Identity] href:", window.location.href);
+      console.log("[Identity] pathname:", window.location.pathname);
+      console.log("[Identity] hash:", window.location.hash);
 
-    if (!hasToken) return;
-    if (window.location.pathname.startsWith("/admin")) return;
+      const hash = window.location.hash || "";
+      const hasToken =
+        hash.includes("invite_token=") ||
+        hash.includes("recovery_token=") ||
+        hash.includes("confirmation_token=");
 
-    const splash = document.querySelector(".logo-splash");
-    if (splash) splash.style.display = "none";
-    document.documentElement.classList.remove("has-splash");
-    document.body.style.overflow = "";
+      console.log("[Identity] hasToken:", hasToken);
 
-    const s = document.createElement("script");
-    s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
-    s.async = true;
+      if (!hasToken) {
+        console.log("[Identity] stop: no token in hash");
+        return;
+      }
 
-    s.onload = () => {
-      const ni = window.netlifyIdentity;
-      if (!ni) return;
+      if (window.location.pathname.startsWith("/admin")) {
+        console.log("[Identity] stop: already in /admin");
+        return;
+      }
 
-      ni.on("login", () => {
-        window.location.href = "/admin/";
-      });
+      const splash = document.querySelector(".logo-splash");
+      console.log("[Identity] splash found:", !!splash);
 
-      ni.init();
-      ni.open();
-    };
+      if (splash) {
+        splash.style.display = "none";
+        splash.style.pointerEvents = "none";
+      }
+      document.documentElement.classList.remove("has-splash");
+      document.body.style.overflow = "";
 
-    document.head.appendChild(s);
+      console.log("[Identity] loading widget script...");
+
+      const s = document.createElement("script");
+      s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+      s.async = true;
+
+      s.onload = () => {
+        console.log("[Identity] widget script loaded");
+
+        const ni = window.netlifyIdentity;
+        console.log("[Identity] window.netlifyIdentity present:", !!ni);
+
+        if (!ni) {
+          console.log("[Identity] stop: netlifyIdentity missing after load");
+          return;
+        }
+
+        ni.on("login", () => {
+          console.log("[Identity] event: login -> redirect to /admin/");
+          window.location.href = "/admin/";
+        });
+
+        // opzionale: logga anche init (utile per capire se arriva)
+        ni.on("init", (user) => {
+          console.log("[Identity] event: init. user:", user ? "present" : "null");
+        });
+
+        console.log("[Identity] calling ni.init()");
+        ni.init();
+
+        console.log("[Identity] calling ni.open()");
+        ni.open();
+      };
+
+      s.onerror = (e) => {
+        console.log("[Identity] ERROR loading widget script", e);
+      };
+
+      document.head.appendChild(s);
+      console.log("[Identity] widget script appended to head");
+    } catch (err) {
+      console.log("[Identity] ERROR in identity handler", err);
+    }
   })();
 </script>
+
