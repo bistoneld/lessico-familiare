@@ -61,21 +61,39 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
+<!-- Netlify Identity widget: caricato solo quando serve (invite/recovery/confirmation) -->
 <script is:inline>
   (() => {
     const hash = window.location.hash || "";
-    if (!hash) return;
     const hasToken =
       hash.includes("invite_token=") ||
       hash.includes("recovery_token=") ||
       hash.includes("confirmation_token=");
+
     if (!hasToken) return;
-    if (window.location.pathname.includes("/admin")) return;
-    const host = window.location.hostname;
-    const allowed =
-      host.endsWith("netlify.app") || host === "lessicofamiliare.it";
-    if (!allowed) return;
-    const base = {JSON.stringify(base)};
-    window.location.href = `${base}admin/${hash}`;
+    if (window.location.pathname.startsWith("/admin")) return;
+
+    const splash = document.querySelector(".logo-splash");
+    if (splash) splash.style.display = "none";
+    document.documentElement.classList.remove("has-splash");
+    document.body.style.overflow = "";
+
+    const s = document.createElement("script");
+    s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+    s.async = true;
+
+    s.onload = () => {
+      const ni = window.netlifyIdentity;
+      if (!ni) return;
+
+      ni.on("login", () => {
+        window.location.href = "/admin/";
+      });
+
+      ni.init();
+      ni.open();
+    };
+
+    document.head.appendChild(s);
   })();
 </script>
