@@ -6,7 +6,7 @@ import Cards from "../components/Cards.astro";
 import CTA from "../components/CTA.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home.png`;
+const heroImg = `${base}images/pages/LF_Servizi.png`;
 
 const services = [
   {
@@ -31,7 +31,7 @@ const services = [
     image: `${base}images/servizi/LF_Servizi_Territorio.png`,
     accent: "#C08A5A",
     description:
-      "Reti di prossimita tra cittadini e agenzie territoriali utili all'integrazione sociale.",
+      "Reti di prossimità tra cittadini e agenzie territoriali utili all'integrazione sociale.",
   },
   {
     title: "Consulenza alla persona",
@@ -53,6 +53,8 @@ const services = [
     title="Servizi"
     subtitle="Interveniamo nei contesti reali della convivenza: studio, domicilio, scuola, territorio e online."
     image={heroImg}
+    imagePositionD="center 70%"
+    imagePositionM="center 10%"
     imageAlt="Dettaglio di uno spazio di lavoro"
     cta={{ label: "Contattaci", href: "/contatti" }}
     align="left"
@@ -66,7 +68,7 @@ const services = [
   <section class="mt-10">
     <div class="max-w-3xl">
       <p class="mt-3 text-slate-600">
-        Il nostro lavoro parte da cio che persone e gruppi vivono nei propri
+        Il nostro lavoro parte da ciò che persone e gruppi vivono nei propri
         ambienti di vita e di appartenenza: famiglia, scuola, reti sociali,
         organizzazioni. Le emozioni e i significati che le accompagnano diventano
         materiale di lavoro per comprendere cosa sta accadendo e per aprire

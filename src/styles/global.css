@@ -10,11 +10,11 @@
   /* 🎯 BRAND */
   --brand: #697dc7;        /* viola identitario */
   --brand-dark: #34416b;  /* titoli / header */
-  --brand-soft: #99abeb;  /* sfondi narrativi */
+  --brand-soft: #99abeb;  /* sfondi narrativi :) */
   /*--accent: #F27B35;*/
 
   /* 📝 TESTI */
-  --text: #1f1f33;        /* quasi nero, caldo */
+  --text: rgb(71, 85, 105);        /* quasi nero, caldo */
   --muted: #47475c;       /* testo secondario */
 
   /* 🧱 SFONDI */

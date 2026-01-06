@@ -5,7 +5,7 @@ import Hero from "../../components/Hero.astro";
 import CTA from "../../components/CTA.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home.png`;
+const heroImg = `${base}images/pages/LF_Servizi_Scuola.png`;
 ---
 
 <Layout
@@ -47,7 +47,7 @@ const heroImg = `${base}images/pages/LF_Home.png`;
       </p>
       <p class="mt-3 text-slate-600">
         Forme di disagio e conflitti possono essere rappresentati come devianze
-        da espellere o come opportunita: eventi critici che se trattati sono in
+        da espellere o come opportunità: eventi critici che se trattati sono in
         grado di far luce sul modo di funzionare della scuola e divenire
         potenziali occasioni di sviluppo della convivenza.
       </p>
@@ -74,6 +74,16 @@ const heroImg = `${base}images/pages/LF_Home.png`;
   href={`${base}contatti`}
 />
     </div>
+    
+      <div class="mt-12 flex justify-center">
+        <a
+          href={`${base}servizi`}
+          class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
+        >
+          Torna ai servizi
+        </a>
+      </div>
   </section>
 </Layout>
 

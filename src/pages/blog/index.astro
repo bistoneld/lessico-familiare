@@ -5,7 +5,7 @@ import Hero from "../../components/Hero.astro";
 import { getCollection } from "astro:content";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home2.png`;
+const heroImg = `${base}images/pages/LF_Blog.png`;
 const fallbackCover = `${base}images/pages/LF_Home.png`;
 const USE_NETLIFY_IMAGES = import.meta.env.PUBLIC_USE_NETLIFY_IMAGES === "true";
 
@@ -51,7 +51,7 @@ const posts = (await getCollection("blog"))
   <Hero
     eyebrow=" "
     title="Blog"
-    subtitle="Articoli, materiali e tracce di lavoro."
+    subtitle="I rapporti umani: culture e percorsi di sviluppo"
     image={heroImg}
     imageAlt="Dettaglio di uno spazio di lavoro"
     align="left"
@@ -59,7 +59,7 @@ const posts = (await getCollection("blog"))
   />
 
   <section>
-    <BannerStrip title="SCOPRI TUTTI GLI ARTICOLI" />
+    <BannerStrip title="Articoli, materiali e tracce di lavoro" />
   </section>
 
   <section class="mt-10">
