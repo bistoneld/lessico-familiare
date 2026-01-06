@@ -5,7 +5,7 @@ import Hero from "../../components/Hero.astro";
 import CTA from "../../components/CTA.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home2.png`;
+const heroImg = `${base}images/pages/LF_Servizi_Territorio.png`;
 ---
 
 <Layout
@@ -34,7 +34,7 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
         interventi di cui ci occupiamo. Pensare i clienti entro una rete di
         rapporti significa pensarli entro un quartiere, dove gli abitanti
         condividono modi di stare insieme e servizi che nascono in base alle
-        loro necessita.
+        loro necessità.
       </p>
       <p class="mt-4 text-slate-600">
         Sviluppiamo dialoghi tra cittadini e servizi territoriali che desiderano
@@ -48,7 +48,7 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
         l'obiettivo di intervenire sulle domande dei cittadini dei quartieri.
         Nello specifico, lavorando su problemi legati all'apprendimento e la
         socializzazione di singoli e gruppi di bambini e le loro famiglie, ma
-        anche su questioni legate alla neo genitorialita.
+        anche su questioni legate alla neo-genitorialità.
       </p>
 
       <CTA
@@ -57,6 +57,16 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
   href={`${base}contatti`}
 />
     </div>
+    
+      <div class="mt-12 flex justify-center">
+        <a
+          href={`${base}servizi`}
+          class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
+        >
+          Torna ai servizi
+        </a>
+      </div>
   </section>
 </Layout>
 

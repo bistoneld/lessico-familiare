@@ -10,6 +10,13 @@ const resolveCover = (cover) => {
   }
   return cover;
 };
+const getFallbackBase = (image) => {
+  if (!image || !heroFallbacks.includes(image)) return null;
+  const clean = image.split("?")[0];
+  const match = clean.match(/\/([^/]+)\.(png|jpe?g|webp|avif)$/i);
+  if (!match) return null;
+  return `${base}images/opt/random_fallback/${match[1]}`;
+};
 const heroFallbacks = [
   `${base}images/pages/LF_Chi_Siamo.png`,
   `${base}images/pages/LF_Home.png`,
@@ -52,18 +59,41 @@ const hashSlug = (value = "") =>
 const heroImage =
   resolveCover(post.data.cover) ??
   heroFallbacks[hashSlug(getSlug(post)) % heroFallbacks.length];
+const heroImageBase = post.data.cover ? null : getFallbackBase(heroImage);
 ---
 
 <Layout title={post.data.title} description={post.data.excerpt ?? ""}>
   <section class="mt-0">
     <div class="blog-hero full-bleed">
-      <img
-        src={heroImage}
-        alt=""
-        class="blog-hero__img"
-        loading="eager"
-        decoding="async"
-      />
+      {heroImageBase ? (
+        <picture>
+          <source
+            type="image/avif"
+            srcset={`${heroImageBase}-640.avif 640w, ${heroImageBase}-1280.avif 1280w, ${heroImageBase}-1920.avif 1920w`}
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset={`${heroImageBase}-640.webp 640w, ${heroImageBase}-1280.webp 1280w, ${heroImageBase}-1920.webp 1920w`}
+            sizes="100vw"
+          />
+          <img
+            src={heroImage}
+            alt=""
+            class="blog-hero__img"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+      ) : (
+        <img
+          src={heroImage}
+          alt=""
+          class="blog-hero__img"
+          loading="eager"
+          decoding="async"
+        />
+      )}
       <div class="blog-hero__scrim" aria-hidden="true"></div>
       <div class="blog-hero__title">
         <!-- <p class="blog-hero__crumb">
@@ -114,13 +144,45 @@ const heroImage =
               class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div class="aspect-[16/9] overflow-hidden bg-slate-100">
-                <img
-                  src={resolveCover(entry.data.cover) ?? heroFallbacks[hashSlug(getSlug(entry)) % heroFallbacks.length]}
-                  alt={entry.data.title}
-                  class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                />
+                {(() => {
+                  const hasCover = Boolean(entry.data.cover);
+                  const image =
+                    resolveCover(entry.data.cover) ??
+                    heroFallbacks[hashSlug(getSlug(entry)) % heroFallbacks.length];
+                  const imageBase = hasCover ? null : getFallbackBase(image);
+                  if (!imageBase) {
+                    return (
+                      <img
+                        src={image}
+                        alt={entry.data.title}
+                        class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    );
+                  }
+                  return (
+                    <picture>
+                      <source
+                        type="image/avif"
+                        srcset={`${imageBase}-640.avif 640w, ${imageBase}-1280.avif 1280w, ${imageBase}-1920.avif 1920w`}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <source
+                        type="image/webp"
+                        srcset={`${imageBase}-640.webp 640w, ${imageBase}-1280.webp 1280w, ${imageBase}-1920.webp 1920w`}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <img
+                        src={image}
+                        alt={entry.data.title}
+                        class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  );
+                })()}
               </div>
               <div class="p-4">
                 <p class="text-xs uppercase tracking-[0.14em] text-slate-400">

@@ -5,7 +5,7 @@ import Hero from "../../components/Hero.astro";
 import CTA from "../../components/CTA.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home2.png`;
+const heroImg = `${base}images/pages/LF_Servizi_Persona.png`;
 ---
 
 <Layout
@@ -34,7 +34,7 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
         evocano emozioni dolorose e stagnanti a cui e difficile dare senso. Un
         cambiamento di vita come un trasferimento, un nuovo lavoro o la perdita
         dello stesso, un lutto, una separazione o una malattia possono generare
-        confusione e difficolta a procedere dentro una fiduciosa progettualita.
+        confusione e difficoltà a procedere dentro una fiduciosa progettualità.
       </p>
       <p class="mt-4 text-slate-600">
         Questi momenti possono costituire un'importante occasione per ripensare
@@ -44,29 +44,31 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
       <p class="mt-4 text-slate-600">
         Difatti, l'obiettivo del percorso di psicoterapia e sempre quello di
         costruire assieme alla persona o il gruppo con cui lavoriamo una
-        pensabilita delle emozioni, spesso problematiche, che hanno motivato la
+        pensabilità delle emozioni, spesso problematiche, che hanno motivato la
         domanda di consulenza. Solo in questo modo e possibile superare gli
         stati di sofferenza e costruire nuove occasioni di felice sviluppo e
-        fiduciosa progettualita.
+        fiduciosa progettualità.
       </p>
       <p class="mt-4 text-slate-600">
         Offriamo consulenze psicoterapeutiche online o a studio rivolte a
         singoli, coppie e famiglie.
       </p>
-
-      <!--<a
-        href={`${base}contatti`}
-        class="mt-6 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
-        style="background: var(--brand);"
-      >
-        Chiedi una consulenza
-      </a>-->
       
   <CTA
   title="Chiedi una consulenza"
   text="Se vuoi orientarti in un passaggio o cerchi uno spazio per dare senso a ciò che vivi, scrivici."
   href={`${base}contatti`}
 />
+
+      <div class="mt-12 flex justify-center">
+        <a
+          href={`${base}servizi`}
+          class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+          style="background: var(--brand);"
+        >
+          Torna ai servizi
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
