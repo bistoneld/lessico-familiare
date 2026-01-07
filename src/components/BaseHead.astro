@@ -1,6 +1,6 @@
 ---
 // Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
+// all pages through the use of the <BaseHead/> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
@@ -61,21 +61,100 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
+<!-- Netlify Identity widget: caricato solo quando serve (invite/recovery/confirmation) -->
 <script is:inline>
   (() => {
+    const log = (...args) => console.log("[Identity]", ...args);
+
     const hash = window.location.hash || "";
-    if (!hash) return;
     const hasToken =
       hash.includes("invite_token=") ||
       hash.includes("recovery_token=") ||
       hash.includes("confirmation_token=");
-    if (!hasToken) return;
-    if (window.location.pathname.includes("/admin")) return;
-    const host = window.location.hostname;
-    const allowed =
-      host.endsWith("netlify.app") || host === "lessicofamiliare.it";
-    if (!allowed) return;
-    const base = {JSON.stringify(base)};
-    window.location.href = `${base}admin/${hash}`;
+
+    log("head script loaded");
+    log("href:", window.location.href);
+    log("pathname:", window.location.pathname);
+    log("hash:", window.location.hash);
+    log("hasToken:", hasToken);
+
+    if (!hasToken) {
+      log("stop: no token in hash");
+      return;
+    }
+
+    if (window.location.pathname.startsWith("/admin")) {
+      log("stop: already in /admin");
+      return;
+    }
+
+    const run = () => {
+      try {
+        // Ora body esiste
+        const splash = document.querySelector(".logo-splash");
+        log("DOM ready. splash found:", !!splash, "body exists:", !!document.body);
+
+        if (splash) {
+          splash.style.display = "none";
+          splash.style.pointerEvents = "none";
+        }
+        document.documentElement.classList.remove("has-splash");
+        if (document.body) document.body.style.overflow = "";
+
+        log("loading widget script...");
+
+        const s = document.createElement("script");
+        s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+        s.async = true;
+
+s.onload = () => {
+  try {
+    log("widget script loaded - VERSIONE 2");
+
+    const ni = window.netlifyIdentity;
+    log("window.netlifyIdentity present:", !!ni);
+    if (!ni) return;
+
+    ni.on("login", () => {
+      log("event: login -> redirect /admin/");
+      window.location.href = "/admin/";
+    });
+
+    ni.on("init", (user) => {
+      log("event: init. user:", user ? "present" : "null");
+    });
+
+    log("calling ni.init()");
+    ni.init();
+
+    log("opening widget (direct)");
+    ni.open();
+
+    setTimeout(() => {
+      log("opening widget (fallback)");
+      ni.open();
+    }, 300);
+  } catch (e) {
+    log("ERROR inside s.onload", e);
+  }
+};
+
+
+        s.onerror = (e) => log("ERROR loading widget script", e);
+
+        document.head.appendChild(s);
+        log("widget script appended");
+      } catch (err) {
+        log("ERROR in run()", err);
+      }
+    };
+
+    // Esegui quando il DOM è pronto (body non è null)
+    if (document.readyState === "loading") {
+      log("waiting DOMContentLoaded...");
+      document.addEventListener("DOMContentLoaded", run, { once: true });
+    } else {
+      run();
+    }
   })();
 </script>
