@@ -1,0 +1,191 @@
+<div style="margin: 0; padding: 24px 12px; background: #edeafa">
+  <table
+    role="presentation"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    style="border-collapse: collapse; margin: 0 auto; max-width: 640px"
+  >
+    <tr>
+      <td style="padding: 0">
+        <table
+          role="presentation"
+          cellpadding="0"
+          cellspacing="0"
+          width="100%"
+          style="
+            border-collapse: collapse;
+            background: #ffffff;
+            border: 1px solid #e6e8f6;
+            border-radius: 16px;
+          "
+        >
+          <tr>
+            <td style="padding: 28px 28px 20px 28px">
+              <p
+                style="
+                  margin: 0 0 10px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 12px;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  color: #697dc7;
+                "
+              >
+                Lessico Familiare
+              </p>
+              <h2
+                style="
+                  margin: 0 0 12px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 22px;
+                  line-height: 1.25;
+                  color: #34416b;
+                "
+              >
+                Invito: accesso al Blog
+              </h2>
+              <p
+                style="
+                  margin: 0 0 12px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #475569;
+                "
+              >
+                Sei stata invitata a gestire i contenuti del sito
+                <strong>{{ .SiteURL }}</strong>.
+              </p>
+              <p
+                style="
+                  margin: 0 0 16px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #475569;
+                "
+              >
+                Per attivare l'accesso e scegliere la password, clicca qui:
+              </p>
+              <p style="margin: 0 0 20px 0">
+                <a
+                  href="{{ .SiteURL }}/admin/#invite_token={{ .Token }}"
+                  style="
+                    display: inline-block;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    line-height: 1;
+                    padding: 12px 18px;
+                    text-decoration: none;
+                    border-radius: 999px;
+                    background: #697dc7;
+                    color: #ffffff;
+                  "
+                >
+                  Accetta l'invito
+                </a>
+              </p>
+              <hr
+                style="
+                  border: none;
+                  border-top: 1px solid #e6e8f6;
+                  margin: 18px 0;
+                "
+              />
+              <h3
+                style="
+                  margin: 0 0 10px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 16px;
+                  line-height: 1.3;
+                  color: #34416b;
+                "
+              >
+                Mini-guida rapida sull'editing degli articoli:
+              </h3>
+              <ol
+                style="
+                  margin: 0 0 14px 18px;
+                  padding: 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #475569;
+                "
+              >
+                <li style="margin: 0 0 6px 0">
+                  Vai su <strong>{{ .SiteURL }}/admin</strong> e fai login.
+                </li>
+                <li style="margin: 0 0 6px 0">
+                  Sezione <strong>Workflow</strong>: tre colonne (Draft, In
+                  review, Ready).
+                </li>
+                <li style="margin: 0 0 6px 0">
+                  Per creare un articolo: <strong>New post → Blog</strong>.
+                </li>
+                <li style="margin: 0 0 6px 0">
+                  Compila almeno: <strong>Titolo</strong>,
+                  <strong>Data</strong>, <strong>Testo</strong> (estratto e
+                  immagine consigliati).
+                </li>
+                <li style="margin: 0 0 6px 0">
+                  Premi spesso <strong>Save</strong>: resta in bozza finchè non
+                  pubblichi.
+                </li>
+              </ol>
+              <div
+                style="
+                  margin: 0 0 16px 0;
+                  padding: 12px 14px;
+                  border-radius: 12px;
+                  background: #f5f0ff;
+                  border: 1px solid #dfe3fb;
+                "
+              >
+                <p
+                  style="
+                    margin: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    line-height: 1.7;
+                    color: #34416b;
+                  "
+                >
+                  <strong>Attenzione:</strong> il tasto
+                  <strong>Publish</strong> mette l'articolo online e avvia un
+                  deploy (consuma crediti). Se vuoi solo controllare, usa
+                  <strong>Preview</strong> e lascia l'articolo in Draft.
+                </p>
+              </div>
+              <p
+                style="
+                  margin: 0 0 8px 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #475569;
+                "
+              >
+                Suggerimento immagini: se carichi una copertina, meglio leggera
+                (evitiamo file enormi).
+              </p>
+              <p
+                style="
+                  margin: 0;
+                  font-family: Arial, Helvetica, sans-serif;
+                  font-size: 12px;
+                  line-height: 1.7;
+                  color: #64748b;
+                "
+              >
+                A presto,<br />
+                Lessico Familiare
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
