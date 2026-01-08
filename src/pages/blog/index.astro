@@ -5,7 +5,7 @@ import Hero from "../../components/Hero.astro";
 import { getCollection } from "astro:content";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Blog.png`;
+const heroImg = "LF_Blog.png";
 const fallbackCover = `${base}images/pages/LF_Home.png`;
 const USE_NETLIFY_IMAGES = import.meta.env.PUBLIC_USE_NETLIFY_IMAGES === "true";
 
@@ -221,3 +221,4 @@ const posts = (await getCollection("blog"))
     });
   })();
 </script>
+

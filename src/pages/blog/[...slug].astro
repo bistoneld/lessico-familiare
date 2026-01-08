@@ -331,10 +331,10 @@ const trackPayload = {
   }
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ trackPayload }}>
   (() => {
-    const payload = {JSON.stringify(trackPayload)};
-    const threshold = 0.9;
+    const payload = trackPayload;
+    const threshold = 0.74;
     let timeOk = false;
     let scrollOk = false;
     let sent = false;
@@ -359,12 +359,19 @@ const trackPayload = {
       }
     };
 
-    setTimeout(() => {
-      timeOk = true;
-      check();
-    }, 30000);
+    const start = () => {
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      setTimeout(() => {
+        timeOk = true;
+        check();
+      }, 60000);
+    };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", start, { once: true });
+    } else {
+      start();
+    }
   })();
 </script>

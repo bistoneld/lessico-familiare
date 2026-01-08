@@ -4,9 +4,9 @@ import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Chi_Siamo.png`;
-const profileImg = `${base}images/pages/P_vm_face.jpg`;
-const profileImg2 = `${base}images/pages/P_cn_face.jpg`;
+const heroImg = "LF_Chi_Siamo.png";
+const profileImg = `${base}images/opt/P_vm_face-1280.webp`;
+const profileImg2 = `${base}images/opt/P_cn_face-1280.webp`;
 const profileOptBase = `${base}images/opt/P_vm_face`;
 const profileOptBase2 = `${base}images/opt/P_cn_face`;
 ---
@@ -80,12 +80,12 @@ const profileOptBase2 = `${base}images/opt/P_cn_face`;
           <picture>
             <source
               type="image/avif"
-              srcset={`${profileOptBase2}-1280.avif 1280w, ${profileOptBase2}-1920.avif 1920`}
+              srcset={`${profileOptBase2}-1280.avif 1280w, ${profileOptBase2}-1920.avif 1920w`}
               sizes="100vw"
             />
             <source
               type="image/webp"
-              srcset={`${profileOptBase2}-1280.webp 1280w, ${profileOptBase2}-1920.webp 1920`}
+              srcset={`${profileOptBase2}-1280.webp 1280w, ${profileOptBase2}-1920.webp 1920w`}
               sizes="100vw"
             />
             <img
@@ -206,3 +206,4 @@ const profileOptBase2 = `${base}images/opt/P_cn_face`;
     column-gap: 3rem;
   }
 </style>
+

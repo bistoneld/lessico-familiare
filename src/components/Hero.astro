@@ -87,9 +87,13 @@ const resolveHref = (href) => {
   }
   return href;
 };
+const isBareFilename = imgSrc && !imgSrc.includes("/") && !imgSrc.includes("\\");
 const imageMatch = imgSrc?.match(/([^/]+)\.(png|jpe?g|webp|avif)$/i);
-const optName = imageMatch?.[1];
+const optName =
+  imageMatch?.[1] ?? (isBareFilename ? imgSrc.replace(/\.[^/.]+$/, "") : null);
 const optBase = optName ? `${basePath}images/opt/${optName}` : null;
+const resolvedImgSrc =
+  isBareFilename && optName ? `${optBase}-1280.webp` : imgSrc;
 const styleParts = [`--lf-hero-overlay:${overlay}`];
 if (imagePositionD) styleParts.push(`--lf-hero-img-pos:${imagePositionD}`);
 if (imagePositionM) styleParts.push(`--lf-hero-img-pos-m:${imagePositionM}`);
@@ -116,7 +120,7 @@ const heroStyle = styleParts.join(";");
       />
       <img
         class="lf-hero__img"
-        src={imgSrc}
+        src={resolvedImgSrc}
         alt={imageAlt}
         loading="eager"
         decoding="async"
@@ -126,7 +130,7 @@ const heroStyle = styleParts.join(";");
   ) : (
     <img
       class="lf-hero__img"
-      src={imgSrc}
+      src={resolvedImgSrc}
       alt={imageAlt}
       loading="eager"
       decoding="async"
