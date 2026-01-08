@@ -4,7 +4,7 @@ import BannerStrip from "../components/BannerStrip.astro";
 import Hero from "../components/Hero.astro";
 
 const base = import.meta.env.BASE_URL;
-const heroImg = `${base}images/pages/LF_Home2.png`;
+const heroImg = "LF_Home2.png";
 ---
 
 <Layout title="Grazie" description="Messaggio inviato">
@@ -37,3 +37,8 @@ const heroImg = `${base}images/pages/LF_Home2.png`;
     padding-top: 0;
   }
 </style>
+
+<script is:inline>
+  window.umami?.track("Form: Invia richiesta - successo");
+</script>
+

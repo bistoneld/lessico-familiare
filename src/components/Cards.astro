@@ -15,6 +15,9 @@ const getImageBase = (image, imageBase) => {
   {items.map((item) => (
     <a
       href={item.href}
+      data-service-card
+      data-title={item.title}
+      data-href={item.href}
       class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-md"
     >
       <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
@@ -69,3 +72,24 @@ const getImageBase = (image, imageBase) => {
     </a>
   ))}
 </div>
+
+<script is:inline>
+  (() => {
+    if (window.__lfServiceCardTracking) return;
+    window.__lfServiceCardTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const card = target?.closest?.("[data-service-card]");
+      if (!card) return;
+
+      const title = card.getAttribute("data-title") || "";
+      const href = card.getAttribute("data-href") || "";
+      window.umami?.track("Servizi: Click card", {
+        title,
+        href,
+        path: window.location.pathname,
+      });
+    });
+  })();
+</script>

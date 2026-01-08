@@ -71,6 +71,10 @@ const getImageBase = (image, imageBase) => {
           <li>
             <a
               href={item.href}
+              data-partner-link
+              data-group={group.title}
+              data-name={item.name}
+              data-href={item.href}
               class="flex items-center justify-between rounded-xl border border-slate-100 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900"
             >
               <span style="color: var(--brand-dark)">{item.name}</span>
@@ -87,3 +91,23 @@ const getImageBase = (image, imageBase) => {
     </div>
   ))}
 </div>
+
+<script is:inline>
+  (() => {
+    if (window.__lfPartnerTracking) return;
+    window.__lfPartnerTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const link = target?.closest?.("[data-partner-link]");
+      if (!link) return;
+
+      window.umami?.track("Reti: Click partner", {
+        group: link.getAttribute("data-group") || "",
+        name: link.getAttribute("data-name") || "",
+        href: link.getAttribute("data-href") || "",
+        path: window.location.pathname,
+      });
+    });
+  })();
+</script>

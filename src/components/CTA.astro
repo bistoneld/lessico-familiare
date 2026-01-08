@@ -22,6 +22,10 @@ const {
     </div>
     <a
       href={href}
+      data-cta-track
+      data-cta-title={title}
+      data-cta-label={buttonLabel}
+      data-cta-href={href}
       class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold !text-white hover:opacity-90 transition"
       style="background: var(--brand-dark);"
     >
@@ -29,3 +33,23 @@ const {
     </a>
   </div>
 </section>
+
+<script is:inline>
+  (() => {
+    if (window.__lfCtaTracking) return;
+    window.__lfCtaTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const link = target?.closest?.("[data-cta-track]");
+      if (!link) return;
+
+      window.umami?.track("CTA: Click", {
+        title: link.getAttribute("data-cta-title") || "",
+        label: link.getAttribute("data-cta-label") || "",
+        href: link.getAttribute("data-cta-href") || "",
+        path: window.location.pathname,
+      });
+    });
+  })();
+</script>

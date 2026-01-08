@@ -80,9 +80,20 @@ const Tag = as;
 const imgSrc = typeof image === "string" ? image : image?.src;
 const fullBleedClass = fullBleed ? "full-bleed" : "";
 const basePath = import.meta.env.BASE_URL;
+const resolveHref = (href) => {
+  if (!href) return href;
+  if (href.startsWith("/")) {
+    return `${basePath}${href.replace(/^\//, "")}`;
+  }
+  return href;
+};
+const isBareFilename = imgSrc && !imgSrc.includes("/") && !imgSrc.includes("\\");
 const imageMatch = imgSrc?.match(/([^/]+)\.(png|jpe?g|webp|avif)$/i);
-const optName = imageMatch?.[1];
+const optName =
+  imageMatch?.[1] ?? (isBareFilename ? imgSrc.replace(/\.[^/.]+$/, "") : null);
 const optBase = optName ? `${basePath}images/opt/${optName}` : null;
+const resolvedImgSrc =
+  isBareFilename && optName ? `${optBase}-1280.webp` : imgSrc;
 const styleParts = [`--lf-hero-overlay:${overlay}`];
 if (imagePositionD) styleParts.push(`--lf-hero-img-pos:${imagePositionD}`);
 if (imagePositionM) styleParts.push(`--lf-hero-img-pos-m:${imagePositionM}`);
@@ -109,7 +120,7 @@ const heroStyle = styleParts.join(";");
       />
       <img
         class="lf-hero__img"
-        src={imgSrc}
+        src={resolvedImgSrc}
         alt={imageAlt}
         loading="eager"
         decoding="async"
@@ -119,7 +130,7 @@ const heroStyle = styleParts.join(";");
   ) : (
     <img
       class="lf-hero__img"
-      src={imgSrc}
+      src={resolvedImgSrc}
       alt={imageAlt}
       loading="eager"
       decoding="async"
@@ -154,12 +165,24 @@ const heroStyle = styleParts.join(";");
   {(cta || cta2) && (
     <div class="lf-hero__actions">
       {cta && (
-        <a class="lf-hero__btn lf-hero__btn--ghost" href={cta.href}>
+        <a
+          class="lf-hero__btn lf-hero__btn--ghost"
+          href={resolveHref(cta.href)}
+          data-hero-cta
+          data-hero-label={cta.label}
+          data-hero-href={resolveHref(cta.href)}
+        >
           {cta.label}
         </a>
       )}
       {cta2 && (
-        <a class="lf-hero__btn lf-hero__btn--soft" href={cta2.href}>
+        <a
+          class="lf-hero__btn lf-hero__btn--soft"
+          href={resolveHref(cta2.href)}
+          data-hero-cta
+          data-hero-label={cta2.label}
+          data-hero-href={resolveHref(cta2.href)}
+        >
           {cta2.label}
         </a>
       )}
@@ -421,6 +444,21 @@ const heroStyle = styleParts.join(";");
 
 <script is:inline>
   (() => {
+    if (window.__lfHeroCtaTracking) return;
+    window.__lfHeroCtaTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const link = target?.closest?.("[data-hero-cta]");
+      if (!link) return;
+
+      window.umami?.track("Hero CTA: Click", {
+        label: link.getAttribute("data-hero-label") || "",
+        href: link.getAttribute("data-hero-href") || "",
+        path: window.location.pathname,
+      });
+    });
+
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
