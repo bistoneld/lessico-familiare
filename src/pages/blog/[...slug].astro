@@ -60,6 +60,10 @@ const heroImage =
   resolveCover(post.data.cover) ??
   heroFallbacks[hashSlug(getSlug(post)) % heroFallbacks.length];
 const heroImageBase = post.data.cover ? null : getFallbackBase(heroImage);
+const trackPayload = {
+  slug: getSlug(post),
+  title: post.data.title,
+};
 ---
 
 <Layout title={post.data.title} description={post.data.excerpt ?? ""}>
@@ -326,3 +330,41 @@ const heroImageBase = post.data.cover ? null : getFallbackBase(heroImage);
     color: rgb(71 85 105);
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const payload = {JSON.stringify(trackPayload)};
+    const threshold = 0.9;
+    let timeOk = false;
+    let scrollOk = false;
+    let sent = false;
+
+    const check = () => {
+      if (sent || !timeOk || !scrollOk) return;
+      sent = true;
+      window.umami?.track("Blog: Lettura completa", payload);
+      window.removeEventListener("scroll", onScroll);
+    };
+
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollTop = window.scrollY || doc.scrollTop || 0;
+      const viewport = window.innerHeight || 0;
+      const height = doc.scrollHeight || 0;
+      if (!height) return;
+      const ratio = (scrollTop + viewport) / height;
+      if (ratio >= threshold) {
+        scrollOk = true;
+        check();
+      }
+    };
+
+    setTimeout(() => {
+      timeOk = true;
+      check();
+    }, 30000);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  })();
+</script>

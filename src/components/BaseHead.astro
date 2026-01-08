@@ -1,22 +1,60 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead/> component.
-import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
+import "../styles/global.css";
+import FallbackImage from "../assets/blog-placeholder-1.jpg";
+import { SITE_TITLE } from "../consts";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
+  title: string;
+  description: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const stripBase = (pathname: string) => {
+  if (!base || base === "/") return pathname;
+  const baseNoSlash = base.endsWith("/") ? base.slice(0, -1) : base;
+  if (pathname.startsWith(baseNoSlash)) {
+    const stripped = pathname.slice(baseNoSlash.length);
+    return stripped || "/";
+  }
+  return pathname;
+};
+
+const relativePath = stripBase(Astro.url.pathname);
+const key =
+  relativePath === "/" ? "home" : relativePath.replace(/^\/|\/$/g, "");
+const ogUrl = new URL(
+  `${base}og/${key}.png`,
+  Astro.site ?? Astro.url
+).toString();
+const fallbackOg = new URL(FallbackImage.src, Astro.url).toString();
+const ogKnown = new Set([
+  "home",
+  "blog",
+  "chi-siamo",
+  "metodo",
+  "servizi",
+  "servizi/consulenza",
+  "servizi/famiglia",
+  "servizi/scuole",
+  "servizi/territori",
+  "prodotti",
+  "reti",
+  "contatti",
+  "contatti-grazie",
+  "contatti-errore",
+  "privacy-policy",
+  "cookie-policy",
+  "note-legali",
+  "about",
+]);
+const socialImage =
+  key.startsWith("blog/") || ogKnown.has(key) ? ogUrl : fallbackOg;
 
 const { title, description } = Astro.props;
-const socialImage = new URL(FallbackImage.src, Astro.url);
 ---
 
 <!-- Global Metadata -->
@@ -25,10 +63,10 @@ const socialImage = new URL(FallbackImage.src, Astro.url);
 <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 <link rel="sitemap" href={`${base}sitemap-index.xml`} />
 <link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
@@ -36,8 +74,8 @@ const socialImage = new URL(FallbackImage.src, Astro.url);
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-	rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
 />
 
 <!-- Canonical URL -->
@@ -50,16 +88,23 @@ const socialImage = new URL(FallbackImage.src, Astro.url);
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={socialImage} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={socialImage} />
 
-
+<script
+  defer
+  src="https://cloud.umami.is/script.js"
+  data-website-id="bf52233a-21e5-41cc-a512-6a7234c50f33"
+  data-domains="lessicofamiliare.it,www.lessicofamiliare.it,dev-env--lessico-familiare.netlify.app"
+  data-do-not-track="true"
+  data-exclude-hash="true"
+></script>

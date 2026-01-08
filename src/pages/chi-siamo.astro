@@ -5,8 +5,10 @@ import Hero from "../components/Hero.astro";
 
 const base = import.meta.env.BASE_URL;
 const heroImg = `${base}images/pages/LF_Chi_Siamo.png`;
-const profileImg = `${base}images/pages/V_MG_9796.jpg`;
-const profileOptBase = `${base}images/opt/V_MG_9796`;
+const profileImg = `${base}images/pages/P_vm_face.jpg`;
+const profileImg2 = `${base}images/pages/P_cn_face.jpg`;
+const profileOptBase = `${base}images/opt/P_vm_face`;
+const profileOptBase2 = `${base}images/opt/P_cn_face`;
 ---
 
 <Layout
@@ -78,16 +80,16 @@ const profileOptBase = `${base}images/opt/V_MG_9796`;
           <picture>
             <source
               type="image/avif"
-              srcset={`${profileOptBase}-640.avif 640w, ${profileOptBase}-1280.avif 1280w`}
+              srcset={`${profileOptBase2}-1280.avif 1280w, ${profileOptBase2}-1920.avif 1920`}
               sizes="100vw"
             />
             <source
               type="image/webp"
-              srcset={`${profileOptBase}-640.webp 640w, ${profileOptBase}-1280.webp 1280w`}
+              srcset={`${profileOptBase2}-1280.webp 1280w, ${profileOptBase2}-1920.webp 1920`}
               sizes="100vw"
             />
             <img
-              src={profileImg}
+              src={profileImg2}
               alt="Mariacristina Nutricato"
               class="h-56 w-full rounded-2xl object-cover"
               loading="lazy"
@@ -180,6 +182,17 @@ const profileOptBase = `${base}images/opt/V_MG_9796`;
         </div>
       </article>
     </div>
+    
+    <div class="mt-12 flex justify-center">
+      <a
+        href={`${base}`}
+        class="!text-white inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition"
+        style="background: var(--brand);"
+      >
+        Torna alla Home
+      </a>
+    </div>
+    
   </section>
 </Layout>
 

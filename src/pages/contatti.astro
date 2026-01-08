@@ -37,13 +37,46 @@ const heroImg = `${base}images/pages/LF_Contatti.png`;
         <p class="font-semibold" style="color: var(--brand-dark);">
           Email
         </p>
-        <a href="mailto:info@lessicofamiliare.it">info@lessicofamiliare.it</a>
+        <a href="mailto:info@lessicofamiliare.it" data-contact-track="Email">info@lessicofamiliare.it</a>
         <p class="mt-4 font-semibold" style="color: var(--brand-dark);">
           Telefono
         </p>
-        <a href="tel:+393339361521">+39 333 936 1521</a>
-        <p></p>
-        <a href="tel:+393469460897">+39 346 946 0897</a>
+        <div class="contact-row">
+          <a href="tel:+393339361521" data-contact-track="Telefono V">+39 333 936 1521</a>
+          <a
+            class="contact-wa"
+            href="https://wa.me/393339361521"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp 333 936 1521"
+            data-contact-track="WhatsApp V"
+          >
+            <img
+              src={`${base}images/logo/Social/logo-whatsapp.png`}
+              alt=""
+              class="contact-wa__icon"
+              loading="lazy"
+            />
+          </a>
+        </div>
+        <div class="contact-row">
+          <a href="tel:+393469460897" data-contact-track="Telefono M">+39 346 946 0897</a>
+          <a
+            class="contact-wa"
+            href="https://wa.me/393469460897"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp 346 946 0897"
+            data-contact-track="WhatsApp M"
+          >
+            <img
+              src={`${base}images/logo/Social/logo-whatsapp.png`}
+              alt=""
+              class="contact-wa__icon"
+              loading="lazy"
+            />
+          </a>
+        </div>
         <p class="mt-4 font-semibold" style="color: var(--brand-dark);">
           Sedi
         </p>
@@ -150,6 +183,21 @@ const heroImg = `${base}images/pages/LF_Contatti.png`;
   :global(main) {
     padding-top: 0;
   }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+  }
+  .contact-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-wa__icon {
+    width: 16px;
+    height: 16px;
+  }
 </style>
 
 <script is:inline>
@@ -250,6 +298,27 @@ const heroImg = `${base}images/pages/LF_Contatti.png`;
         console.log("contatti: form ok");
         form.submit();
       }
+    });
+  })();
+</script>
+
+<script is:inline>
+  (() => {
+    if (window.__lfContactTracking) return;
+    window.__lfContactTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const link = target?.closest?.("[data-contact-track]");
+      if (!link) return;
+
+      const label = link.getAttribute("data-contact-track") || "";
+      const href = link.getAttribute("href") || "";
+      window.umami?.track("Contatti: Click", {
+        label,
+        href,
+        path: window.location.pathname,
+      });
     });
   })();
 </script>

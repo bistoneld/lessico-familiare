@@ -21,18 +21,19 @@ const base = import.meta.env.BASE_URL;
 		<div class="lf-footer__cols">
 			<div class="lf-footer__contact">
 				<p class="lf-footer__title">Contatti</p>
-				<a href="mailto:info@lessicofamiliare.it">info@lessicofamiliare.it</a>
+				<a href="mailto:info@lessicofamiliare.it" data-footer-track="Email">info@lessicofamiliare.it</a>
 				<div class="lf-footer__contact-row">
-					<a href="tel:+393339361521">+39 333 936 1521</a>
+					<a href="tel:+393339361521" data-footer-track="Telefono V">+39 333 936 1521</a>
 					<a
 						class="lf-footer__wa"
 						href="https://wa.me/393339361521"
 						target="_blank"
 						rel="noreferrer"
 						aria-label="WhatsApp 333 936 1521"
+						data-footer-track="WhatsApp V"
 					>
 						<img
-							src={`${base}images/logo/Social/logo-whatsapp.webp`}
+							src={`${base}images/logo/Social/logo-whatsapp.png`}
 							alt=""
 							class="lf-footer__wa-icon"
 							loading="lazy"
@@ -40,16 +41,17 @@ const base = import.meta.env.BASE_URL;
 					</a>
 				</div>
 				<div class="lf-footer__contact-row">
-					<a href="tel:+393469460897">+39 346 946 0897</a>
+					<a href="tel:+393469460897" data-footer-track="Telefono M">+39 346 946 0897</a>
 					<a
 						class="lf-footer__wa"
 						href="https://wa.me/393469460897"
 						target="_blank"
 						rel="noreferrer"
 						aria-label="WhatsApp 346 946 0897"
+						data-footer-track="WhatsApp M"
 					>
 						<img
-							src={`${base}images/logo/Social/logo-whatsapp.webp`}
+							src={`${base}images/logo/Social/logo-whatsapp.png`}
 							alt=""
 							class="lf-footer__wa-icon"
 							loading="lazy"
@@ -60,15 +62,15 @@ const base = import.meta.env.BASE_URL;
 			</div>
 			<div class="lf-footer__links">
 				<p class="lf-footer__title">Link rapidi</p>
-				<a href="/chi-siamo">Chi siamo</a>
-				<a href="/metodo">Metodo</a>
-				<a href="/servizi">Servizi</a>
-				<a href="/blog">Blog</a>
+				<a href={`${base}chi-siamo`}>Chi siamo</a>
+				<a href={`${base}metodo`}>Metodo</a>
+				<a href={`${base}servizi`}>Servizi</a>
+				<a href={`${base}blog`}>Blog</a>
 			</div>
 			<div class="lf-footer__social-col">
 				<p class="lf-footer__title">Social</p>
 				<div class="lf-footer__social">
-					<a href="https://www.instagram.com/lessicofamiliare_" target="_blank" rel="noreferrer" aria-label="Instagram">
+					<a href="https://www.instagram.com/lessicofamiliare_" target="_blank" rel="noreferrer" aria-label="Instagram" data-footer-track="Instagram">
 						<img
 							src={`${base}images/logo/Social/ig.png`}
 							alt=""
@@ -76,7 +78,7 @@ const base = import.meta.env.BASE_URL;
 							loading="lazy"
 						/>
 					</a>
-					<a href="https://www.facebook.com/profile.php?id=100063841042838" target="_blank" rel="noreferrer" aria-label="Facebook">
+					<a href="https://www.facebook.com/profile.php?id=100063841042838" target="_blank" rel="noreferrer" aria-label="Facebook" data-footer-track="Facebook">
 						<img
 							src={`${base}images/logo/Social/fb.png`}
 							alt=""
@@ -110,6 +112,27 @@ const base = import.meta.env.BASE_URL;
 		</div>
 	</div>
 </footer>
+
+<script is:inline>
+  (() => {
+    if (window.__lfFooterTracking) return;
+    window.__lfFooterTracking = true;
+
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const link = target?.closest?.("[data-footer-track]");
+      if (!link) return;
+
+      const label = link.getAttribute("data-footer-track") || "";
+      const href = link.getAttribute("href") || "";
+      window.umami?.track("Footer: Click", {
+        label,
+        href,
+        path: window.location.pathname,
+      });
+    });
+  })();
+</script>
 
 <style>
 	.lf-footer {
