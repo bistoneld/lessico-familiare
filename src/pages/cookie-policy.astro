@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout title="Cookie policy" description="Informativa sui cookie di Lessico Familiare.">
+
+  <section>
+    <BannerStrip title="COOKIE POLICY" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <p class="mt-3 text-slate-600">
+        La presente Cookie Policy descrive l'uso di cookie e tecnologie similari
+        sul sito Lessico Familiare (il "Sito"), raggiungibile all'indirizzo
+        www.lessicofamiliare.it.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        1. Cosa sono i cookie
+      </h4>
+      <p class="mt-2 text-slate-600">
+        I cookie sono piccoli file di testo che i siti visitati inviano al
+        dispositivo dell'utente (computer, smartphone o tablet), dove vengono
+        memorizzati per poi essere ritrasmessi agli stessi siti alla visita
+        successiva. Servono, ad esempio, a garantire il corretto funzionamento
+        delle pagine e a migliorare l'esperienza di navigazione.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        2. Quali cookie utilizza il Sito
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Il Sito utilizza esclusivamente cookie tecnici, necessari al
+        funzionamento e alla fruizione del Sito.
+      </p>
+      <p class="mt-2 text-slate-600">In particolare, possono essere utilizzati cookie tecnici per:</p>
+      <ul class="mt-2 text-slate-600">
+        <li>- consentire la normale navigazione e consultazione delle pagine;</li>
+        <li>
+          - gestire preferenze tecniche essenziali (ad esempio sicurezza,
+          bilanciamento del carico, corretto funzionamento delle richieste al
+          server);
+        </li>
+        <li>- prevenire abusi e garantire la sicurezza del Sito.</li>
+      </ul>
+      <p class="mt-2 text-slate-600">
+        Il Sito non utilizza cookie di profilazione o marketing e non effettua
+        attività di tracciamento finalizzata alla pubblicità.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        3. Cookie di terze parti
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Ad oggi il Sito non utilizza cookie di profilazione di terze parti.
+        Eventuali contenuti o servizi integrati (ad esempio collegamenti verso
+        piattaforme esterne) potrebbero, in autonomia, utilizzare cookie o
+        strumenti di tracciamento: in tali casi si invita l'utente a consultare
+        le informative dei rispettivi fornitori.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        4. Gestione dei cookie dal browser
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Poiche il Sito utilizza solo cookie tecnici, non e richiesto il consenso
+        tramite banner. E comunque possibile gestire o disattivare i cookie dalle
+        impostazioni del browser. La disattivazione dei cookie tecnici potrebbe
+        compromettere il corretto funzionamento di alcune parti del Sito.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        5. Aggiornamenti
+      </h4>
+      <p class="mt-2 text-slate-600">
+        La presente Cookie Policy può essere soggetta ad aggiornamenti, ad
+        esempio in caso di modifiche tecniche del Sito o introduzione di nuovi
+        servizi.
+      </p>
+      <p class="mt-2 text-slate-600">Data ultimo aggiornamento: 08/01/2026</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

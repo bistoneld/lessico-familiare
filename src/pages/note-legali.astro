@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+import BannerStrip from "../components/BannerStrip.astro";
+import Hero from "../components/Hero.astro";
+
+const base = import.meta.env.BASE_URL;
+const heroImg = `${base}images/pages/LF_Home2.png`;
+---
+
+<Layout title="Note legali" description="Informazioni legali su Lessico Familiare.">
+  <section>
+    <BannerStrip title="NOTE LEGALI" />
+  </section>
+
+  <section class="mt-10">
+    <div class="max-w-3xl">
+      <h4 class="mt-3 text-lg font-semibold" style="color: var(--brand-dark);">
+        Titolare del sito
+      </h4>
+      <p class="mt-2 text-slate-600">Studio Lessico Familiare</p>
+      <p class="mt-2 text-slate-600">Sede: Via Etruria, 81 - 00183 Roma (RM)</p>
+      <p class="mt-2 text-slate-600">Email: info@lessicofamiliare.it</p>
+      <p class="mt-2 text-slate-600">Telefono: +39 3339361521</p>
+      <p class="mt-2 text-slate-600">PEC: vittoria.marotta@psypec.it</p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Dati fiscali
+      </h4>
+      <p class="mt-2 text-slate-600">P.IVA: 08991211213</p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Professione e abilitazioni
+      </h4>
+      <p class="mt-2 text-slate-600">Le professioniste dello Studio:</p>
+      <p class="mt-2 text-slate-600">
+        Mariacristina Nutricato - Psicologa | Psicoterapeuta iscritta nella sezione A dell'Albo degli Psicologi del Lazio dal 20/06/2016 con il n. 22377 
+      </p>
+      <p class="mt-2 text-slate-600">
+        Vittoria Marotta - Psicologa | Psicoterapeuta iscritta nella sezione A dell'Albo degli Psicologi del Lazio dal 21/05/2018 con il n. 24011
+      </p>
+      <p class="mt-2 text-slate-600">
+        Attività svolta in conformità alla normativa vigente e al
+        codice deontologico di riferimento.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Oggetto del sito
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Il sito ha finalità informativa e descrive attività, servizi e contenuti
+        dello Studio. Le informazioni pubblicate non sostituiscono un colloquio
+        professionale né costituiscono diagnosi o indicazioni personalizzate.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Proprietà intellettuale
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Testi, immagini, grafiche, loghi e contenuti del sito sono di proprietà
+        dello Studio e/o dei rispettivi titolari, salvo diversa indicazione. È
+        vietata la riproduzione, anche parziale, senza autorizzazione scritta.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Responsabilità
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Lo Studio cura l'aggiornamento dei contenuti, ma non garantisce
+        l'assenza di errori o l'aggiornamento continuo di tutte le informazioni.
+        Lo Studio non risponde di eventuali danni derivanti dall'uso del sito,
+        da interruzioni del servizio o da contenuti di siti esterni collegati
+        tramite link.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Link a siti terzi
+      </h4>
+      <p class="mt-2 text-slate-600">
+        I link esterni sono forniti per comodità. Lo Studio non controlla tali
+        siti e non e responsabile di contenuti, servizi o politiche adottate da
+        terzi.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Privacy e cookie
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Per informazioni sul trattamento dei dati personali e sull'uso dei
+        cookie si rinvia alle pagine "Privacy" e "Cookie".</p>
+        <p>
+        Il sito utilizza esclusivamente cookie tecnici necessari al funzionamento e 
+        non utilizza cookie di profilazione o marketing.
+      </p>
+
+      <h4 class="mt-8 text-lg font-semibold" style="color: var(--brand-dark);">
+        Aggiornamenti
+      </h4>
+      <p class="mt-2 text-slate-600">
+        Le presenti Note legali possono essere aggiornate. Data ultimo
+        aggiornamento: 08/01/2026.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :global(main) {
+    padding-top: 0;
+  }
+</style>

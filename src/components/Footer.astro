@@ -22,9 +22,41 @@ const base = import.meta.env.BASE_URL;
 			<div class="lf-footer__contact">
 				<p class="lf-footer__title">Contatti</p>
 				<a href="mailto:info@lessicofamiliare.it">info@lessicofamiliare.it</a>
-        		<a href="tel:+393339361521">+39 333 936 1521</a>
-				<a href="tel:+393469460897">+39 346 946 0897</a>
-				<span>Roma · Bari · online</span>
+				<div class="lf-footer__contact-row">
+					<a href="tel:+393339361521">+39 333 936 1521</a>
+					<a
+						class="lf-footer__wa"
+						href="https://wa.me/393339361521"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="WhatsApp 333 936 1521"
+					>
+						<img
+							src={`${base}images/logo/Social/logo-whatsapp.webp`}
+							alt=""
+							class="lf-footer__wa-icon"
+							loading="lazy"
+						/>
+					</a>
+				</div>
+				<div class="lf-footer__contact-row">
+					<a href="tel:+393469460897">+39 346 946 0897</a>
+					<a
+						class="lf-footer__wa"
+						href="https://wa.me/393469460897"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="WhatsApp 346 946 0897"
+					>
+						<img
+							src={`${base}images/logo/Social/logo-whatsapp.webp`}
+							alt=""
+							class="lf-footer__wa-icon"
+							loading="lazy"
+						/>
+					</a>
+				</div>
+				<span>Roma · Bari · Online</span>
 			</div>
 			<div class="lf-footer__links">
 				<p class="lf-footer__title">Link rapidi</p>
@@ -60,9 +92,9 @@ const base = import.meta.env.BASE_URL;
 	<div class="lf-footer__bottom">
 		<span>&copy; {today.getFullYear()} Lessico Familiare</span>
 		<div class="lf-footer__legal">
-			<a href="#">Privacy</a>
-			<a href="#">Cookie</a>
-			<a href="#">Note legali</a>
+			<a href={`${base}privacy-policy`}>Privacy</a>
+			<a href={`${base}cookie-policy`}>Cookie</a>
+			<a href={`${base}note-legali`}>Note legali</a>
 		</div>
 	</div>
 </footer>
@@ -120,6 +152,25 @@ const base = import.meta.env.BASE_URL;
 		text-decoration: none;
 		font-size: 0.95rem;
 		margin-top: 0.35rem;
+	}
+	.lf-footer__contact-row {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-top: 0.35rem;
+	}
+	.lf-footer__contact-row a {
+		margin-top: 0;
+	}
+	.lf-footer__wa {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.lf-footer__wa-icon {
+		width: 17px;
+		height: 17px;
+		filter: brightness(0) invert(1);
 	}
 	.lf-footer__cols a:hover {
 		color: #fff;
