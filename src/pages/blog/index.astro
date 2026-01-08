@@ -137,6 +137,21 @@ const posts = (await getCollection("blog"))
           );
         })}
       </ul>
+      <div class="mt-6 flex justify-end">
+        <a
+          href={`${base}rss.xml`}
+          class="rss-cta inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold"
+        >
+          <img
+            src={`${base}images/logo/Social/rss-logo.png`}
+            alt=""
+            class="rss-cta__icon"
+            loading="lazy"
+          />
+          Iscriviti al feed
+        </a>
+      </div>
+
       <div class="mt-8 flex justify-center">
         <button
           type="button"
@@ -153,6 +168,24 @@ const posts = (await getCollection("blog"))
 <style>
   :global(main) {
     padding-top: 0;
+  }
+  .rss-cta {
+    background: var(--brand);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: var(--box-shadow);
+    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  }
+
+  .rss-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(52, 65, 107, 0.2);
+  }
+
+  .rss-cta__icon {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
   }
 
   .blog-card.is-hidden {

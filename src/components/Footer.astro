@@ -84,6 +84,18 @@ const base = import.meta.env.BASE_URL;
 							loading="lazy"
 						/>
 					</a>
+					<a
+						href={`${base}rss.xml`}
+						class="lf-footer__rss"
+						aria-label="RSS"
+					>
+						<img
+							src={`${base}images/logo/Social/rss-logo.png`}
+							alt=""
+							class="lf-footer__social-icon lf-footer__rss-icon"
+							loading="lazy"
+						/>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -186,6 +198,12 @@ const base = import.meta.env.BASE_URL;
 		display: block;
 		filter: brightness(0) invert(1);
 	}
+	.lf-footer__rss {
+		display: none;
+	}
+	.lf-footer__rss-icon {
+		filter: brightness(0) invert(1);
+	}
 	.lf-footer__title {
 		font-weight: 700;
 		letter-spacing: 0.08em;
@@ -241,6 +259,8 @@ const base = import.meta.env.BASE_URL;
 		.lf-footer__legal {
 			display: flex;
 		}
+		.lf-footer__rss {
+			display: inline-flex;
+		}
 	}
 </style>
-
